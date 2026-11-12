@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-13",
+  "scope": "Actual source ZIP + Git history restore on macOS; Windows build/runtime separate",
+  "status": "PASS",
+  "head": "4d42df4e5838df45d9f665dc4638752d613101a9",
+  "tracked_files_restored_and_hash_checked": 130,
+  "archive_sha256": "bdf5ff380712cb8eb0caaf54180b2ca197b512c8c4f28a4d2e32b85ca326e9b3",
+  "checks": [
+    "ZIP member hashes",
+    "Git clone from bundled history",
+    "HEAD equality",
+    "all tracked file SHA256 equality",
+    "clean restored working tree",
+    "Windows builder CLI import/help"
+  ],
+  "native_windows_msvc_build": "NOT_RUN",
+  "native_scm_runner_runtime": "NOT_RUN"
+}
