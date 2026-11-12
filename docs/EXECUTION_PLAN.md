@@ -76,8 +76,8 @@
 - [x] G2.01 — Подготовить SCM entrypoint/status/control lifecycle.
 - [ ] G2.02 — Проверить сборку x86_64-pc-windows-msvc.
 - [x] G2.03 — Подготовить ARM64 variant для Fusion при наличии Windows ARM.
-- [ ] G2.04 — Реализовать local-only pipe с DACL/FIRST_PIPE_INSTANCE.
-- [ ] G2.05 — Извлекать SID/session из token, не JSON.
+- [x] G2.04 — Реализовать local-only pipe с DACL/FIRST_PIPE_INSTANCE.
+- [x] G2.05 — Извлекать SID/session из token, не JSON.
 - [ ] G2.06 — Определить enrollment owner bootstrap authorization.
 - [ ] G2.07 — Добавить timeouts, rate limit и cancellation.
 - [ ] G2.08 — Проверить second user/admin/remote client/SID spoof.
@@ -136,7 +136,7 @@
 
 - [ ] G6.01 — Создать защищённый ProgramData path без reparse substitution.
 - [ ] G6.02 — Настроить SYSTEM/service SID ACL на directory и файлы.
-- [ ] G6.03 — Реализовать machine DPAPI, zeroize и отсутствие plaintext fallback.
+- [x] G6.03 — Реализовать machine DPAPI, zeroize и отсутствие plaintext fallback.
 - [ ] G6.04 — Атомарно сохранить owner/enrollment/token и version/digest.
 - [ ] G6.05 — Проверить boot после initial enrollment и без него.
 - [ ] G6.06 — Применять signed auto_connect до spawn.

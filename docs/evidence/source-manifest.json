@@ -35,7 +35,7 @@
     "tools/issuer_signing_reference.py": "65c745ce2fb2f46b192d0b62a13068e780623f6b6967ec297a7aa8741fedc0ed",
     "tools/mock-issuer.mjs": "a0a81e67b6d5e812125932bf6e8ab5755069effdb41c232fe25c17510b4479d9",
     "tools/signing-vectors.mjs": "417a98c2e5c2b289073f6d472a572a9cc8363edb74808b7b38d675ee3921afa3",
-    "tools/windows/run-native-tests.cmd": "33d45538023d2e89ffe289142675dc181c79298af2141f17cda14c97b9768cec",
+    "tools/windows/run-native-tests.cmd": "33e4f08516aae1686401f4fec480db6f515641e0615e90081fed2007d0784085",
     "tools/windows/service-smoke.ps1": "4c66944173f2fd1a9c84b5b53e8b5b1f922f05e0e5ba1ea84cc298219f6e524d"
   }
 }

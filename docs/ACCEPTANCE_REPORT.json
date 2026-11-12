@@ -379,5 +379,17 @@
       "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
     }
   ],
-  "source_manifest": "docs/evidence/source-manifest.json"
+  "source_manifest": "docs/evidence/source-manifest.json",
+  "native_partial_evidence": [
+    {
+      "platform": "Windows 11 Pro ARM64 / VMware Fusion",
+      "source_commit": "e772fd8",
+      "status": "PASS",
+      "passed": 4,
+      "failed": 0,
+      "duration_seconds": 0.15,
+      "evidence": "docs/evidence/g2-native-arm64-tests.txt",
+      "scope": "DPAPI primitive and same-user console transport; does not close x64 A21/A22/A23"
+    }
+  ]
 }

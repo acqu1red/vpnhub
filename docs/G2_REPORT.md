@@ -14,3 +14,6 @@
 
 
 Дополнение 13.11.2026: status client получил bounded retry только при ERROR_PIPE_BUSY; in/out buffers явно ограничены. Подготовлен opt-in native pipe test (реальная OS identity, duplicate listener, oversize, reconnect, idle stop), который запускается launcher вместе с3 DPAPI tests. Обычный hosted CI пропускает console-only test. SCM smoke теперь использует bounded ServiceController wait и выводит PASS после подтверждённого удаления своей SCM записи. Native выполнение этих дополнений пока NOT_RUN. Evidence followup checks/build — отдельные файлы g2-followup-*.txt.
+
+
+Runtime 13.11.2026: `run-native-tests.cmd` в Windows11 Pro ARM64 / Fusion — **4 passed,0 failed,0 ignored,0.15s**.3 DPAPI primitive tests и1 same-user console pipe test. Результат наблюдался агентом в окне VM и подтверждён полным логом пользователя. Evidence: docs/evidence/g2-native-arm64-tests.txt. Это не SCM smoke, vault ownership или x64 acceptance.

@@ -1,0 +1,23 @@
+Observed: 2026-11-13, Windows 11 Pro ARM64, ScrumeVPN Lab / VMware Fusion.
+Source: console screenshot observed by agent, confirmed by user-provided log.
+Source commit: e772fd8 (lab binaries built from this source).
+Invocation: windows-adapter-tests.exe --include-ignored --test-threads=1
+
+SCM; IPC=STATUS_ONLY_UNVERIFIED; VAULT=NOT_IMPLEMENTED; TUN=NOT_IMPLEMENTED
+
+running 4 tests
+test dpapi::tests::bounds_fail_before_api ... ok
+test dpapi::tests::corrupt_ciphertext_never_returns_plaintext ... ok
+test dpapi::tests::native_machine_roundtrip_and_redaction ... ok
+test pipe::tests::native_pipe_identity_reconnect_oversize_and_cancel ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.15s
+
+NATIVE ADAPTER TESTS PASSED
+Guest log: %TEMP%\ScrumeVPN-native-17388-10446.txt (user directory redacted).
+
+Scope: DPAPI primitive and same-user active-console named pipe transport only.
+Not tested: filesystem vault/ACL, second user, anonymous/remote clients, service
+install/stop, boot-connect, actual tunnel, x64 driver/platform acceptance.
+Expected payload hashes: g2-followup-arm-build-manifest.json.
+Guest-side executable hashes not independently collected yet.

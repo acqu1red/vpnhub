@@ -1,6 +1,6 @@
 # Windows lab и VMware Fusion
 
-SOURCE: пользователь поручил использовать VMware Fusion. VERIFIED: host macOS arm64; Создана ScrumeVPN Lab: Windows11 Pro ARM с Microsoft, Secure Boot/vTPM,4CPU,6GiB RAM,128GiB sparse,NAT. Windows/OOBE и VMware Tools установлены; после перезагрузки применяются обновления. Текущее состояние уточнять в STATUS.md.
+SOURCE: пользователь поручил использовать VMware Fusion. VERIFIED: host macOS arm64; Создана ScrumeVPN Lab: Windows11 Pro ARM с Microsoft, Secure Boot/vTPM,4CPU,6GiB RAM,128GiB sparse,NAT. Windows/OOBE и VMware Tools установлены; обновления завершены, native adapter tests4/4 PASS. Текущее состояние уточнять в STATUS.md.
 
 ## Границы стенда
 
@@ -33,6 +33,6 @@ Recovery управляет только собственными changes. Ни�
 4. DPAPI roundtrip/corruption/bounds **не** доказывают service-only ownership: A21 требует будущего filesystem vault + ACL + second user/cross-machine.
 5. В elevated guest PowerShell: `powershell -NoProfile -File D:\service-smoke.ps1 -Binary D:\ScrumeVPNSvc.exe -DisposableLab` (уточнить CD letter). Только новый disposable lab: скрипт откажет при существующих service/directory, установит temporary Manual LocalSystem status service под защищённым Program Files, проверит status/stop и удаление SCM. PASS выводится только после cleanup. Бинарник остаётся для inspection; для повторного чистого прогона использовать snapshot.
 6. Если ExecutionPolicy запрещает локальный ps1 — остановиться и согласовать штатное signing/review с администратором стенда. Не применять Bypass/Unrestricted, не отключать Defender/UAC. Скрипт ещё не был исполнен; сборка EXE его не проверяет.
-7. Сохранить native logs, binary SHA256 из build-manifest и итог SCM JSON. До просмотра actual results статусы NOT_RUN. Только затем расширять тесты до anonymous/remote/second user и сетевых экспериментов.
+7. Сохранить native logs, binary SHA256 из build-manifest и итог SCM JSON. Actual4/4 результат записан в docs/evidence/g2-native-arm64-tests.txt; SCM и полный security acceptance остаются NOT_RUN. Только затем расширять тесты до anonymous/remote/second user и сетевых экспериментов.
 
 Encrypted vmrun требует пароль VM. Не извлекать его из Keychain и не передавать в чат/журналы/CLI argv. Guest secrets отсутствуют в payload. На текущем этапе не настраивать дополнительный remote login или host home sharing ради удобства автоматизации.
