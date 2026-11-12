@@ -1,0 +1,10 @@
+COMMAND: cargo clippy --workspace --all-targets --locked --target x86_64-pc-windows-msvc -- -D warnings
+    Checking scrume-service v0.1.0 (/Users/headliner/Documents/vpn/ScrumeVPN/apps/service)
+    Checking scrume-core v0.1.0 (/Users/headliner/Documents/vpn/ScrumeVPN/crates/scrume-core)
+    Checking scrume-lab v0.1.0 (/Users/headliner/Documents/vpn/ScrumeVPN/apps/lab)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.64s
+COMMAND: cargo clippy --workspace --all-targets --locked --target aarch64-pc-windows-msvc -- -D warnings
+    Checking scrume-core v0.1.0 (/Users/headliner/Documents/vpn/ScrumeVPN/crates/scrume-core)
+    Checking scrume-service v0.1.0 (/Users/headliner/Documents/vpn/ScrumeVPN/apps/service)
+    Checking scrume-lab v0.1.0 (/Users/headliner/Documents/vpn/ScrumeVPN/apps/lab)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.34s

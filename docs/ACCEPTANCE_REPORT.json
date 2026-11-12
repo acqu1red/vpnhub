@@ -1,0 +1,376 @@
+{
+  "date": "2026-11-12",
+  "platform": "macOS arm64; Rust 1.99.1; Node 24.11.0; Python 3.9.6",
+  "scope": "local development only; Windows E2E not performed",
+  "source_sha256": "0469c70498a8b93fb87561984f69f3125b6bbfed9998b8eb27a5c392af8298a9",
+  "tests": [
+    {
+      "id": "A01",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A02",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A03",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A04",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A05",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A06",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A07",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A08",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A09",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A10",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A11",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A12",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A13",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A14",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A15",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A16",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A17",
+      "status": "PASS",
+      "evidence": [
+        "crates/scrume-core/tests/security.rs",
+        "tests/fixtures/signing-v1.json",
+        "docs/evidence/local-checks.txt"
+      ],
+      "notes": "Unit scope only: tamper, wrong signature key, version rollback and conflicting equal version."
+    },
+    {
+      "id": "A18",
+      "status": "PASS",
+      "evidence": [
+        "crates/scrume-core/tests/security.rs",
+        "tests/fixtures/signing-v1.json",
+        "docs/evidence/local-checks.txt"
+      ],
+      "notes": "Unit scope only: tamper, wrong signature key, version rollback and conflicting equal version."
+    },
+    {
+      "id": "A19",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A20",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A21",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A22",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A23",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A24",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A25",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A26",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A27",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A28",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A29",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A30",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A31",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A32",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A33",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A34",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A35",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A36",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A37",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A38",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A39",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A40",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A41",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A42",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A43",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A44",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A45",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A46",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A47",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A48",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A49",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A50",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A51",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A52",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A53",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A54",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A55",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A56",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A57",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A58",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A59",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    },
+    {
+      "id": "A60",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+    }
+  ]
+}

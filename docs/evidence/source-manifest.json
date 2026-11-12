@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-12",
+  "status": "development - not a release build",
+  "files": {
+    "Cargo.toml": "47f710fb568f6d8ce9cba59b3e2927193acba2fd4bb82c3c9612a62414457a49",
+    "Cargo.lock": "e37ff29a0bb12ec0c151998febb3fe6bcf6b979d6ab06da33d5ae9c8e6146f5d",
+    "rust-toolchain.toml": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+    "upstreams.lock.json": "e395b3b78547601b8c08f62b63302e0a95ab88347a699c17a5b1c01d1b41c93c",
+    "crates/scrume-core/src/bundle.rs": "049c4cfa39ec51e52239c57dd0f27150ab71c5dc8935218f111f77fa0ce2500e",
+    "crates/scrume-core/src/state.rs": "f531a9bc37f070cdc0f889a0408c4f80cd7a7fd89b2e9b3c556ef05510fe8e6e",
+    "crates/scrume-core/src/ipc.rs": "f1ebe7998809a6b639a64737f97c5987a17b40e0d57868a204550b7b4678adcc",
+    "crates/scrume-core/tests/security.rs": "0469c70498a8b93fb87561984f69f3125b6bbfed9998b8eb27a5c392af8298a9",
+    "tools/mock-issuer.mjs": "a0a81e67b6d5e812125932bf6e8ab5755069effdb41c232fe25c17510b4479d9",
+    "tests/mock-issuer.test.mjs": "986f3cea6e06eef9e39078a3728e2f6b61c35b872f1acecbe909609f902c3c8d",
+    "tests/fixtures/signing-v1.json": "f9ebdde483341040ee6ce065fa1191956595ea6f4bd15b03d4bfc944bb105c46"
+  }
+}

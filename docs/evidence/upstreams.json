@@ -1,0 +1,318 @@
+[
+  {
+    "repo": "XTLS/Xray-core",
+    "url": "https://github.com/XTLS/Xray-core",
+    "checked_at": "2026-11-12T15:22:09.733957+00:00",
+    "default_branch": "main",
+    "archived": false,
+    "pushed_at": "2026-11-12T06:04:49Z",
+    "license_metadata": {
+      "key": "mpl-2.0",
+      "name": "Mozilla Public License 2.0",
+      "spdx_id": "MPL-2.0",
+      "url": "https://api.github.com/licenses/mpl-2.0",
+      "node_id": "MDc6TGljZW5zZTE0"
+    },
+    "commit": "c456141815359e1d2c00dfc673f5f26adf22fae2",
+    "license_paths": [
+      "LICENSE",
+      "transport/internet/masque/connectip/LICENSE"
+    ],
+    "release": {
+      "tag_name": "v26.11.9",
+      "published_at": "2026-11-09T05:31:16Z",
+      "html_url": "https://github.com/XTLS/Xray-core/releases/tag/v26.11.9",
+      "target_commitish": "main",
+      "assets": [
+        {
+          "name": "Xray-windows-64.zip",
+          "browser_download_url": "https://github.com/XTLS/Xray-core/releases/download/v26.11.9/Xray-windows-64.zip",
+          "digest": "sha256:1262522266337b824f07beb8e1375786b437683b3890105469088f8e17e0a69d",
+          "size": 16697596
+        },
+        {
+          "name": "Xray-windows-64.zip.dgst",
+          "browser_download_url": "https://github.com/XTLS/Xray-core/releases/download/v26.11.9/Xray-windows-64.zip.dgst",
+          "digest": "sha256:fb926f87b96c94cdfaaf46eba085c92a6c1ce3a4783ab19061fb7a69657da918",
+          "size": 299
+        }
+      ]
+    }
+  },
+  {
+    "repo": "XTLS/Xray-docs-next",
+    "url": "https://github.com/XTLS/Xray-docs-next",
+    "checked_at": "2026-11-12T15:22:09.735882+00:00",
+    "default_branch": "main",
+    "archived": false,
+    "pushed_at": "2026-11-12T04:56:23Z",
+    "license_metadata": {
+      "key": "cc-by-sa-4.0",
+      "name": "Creative Commons Attribution Share Alike 4.0 International",
+      "spdx_id": "CC-BY-SA-4.0",
+      "url": "https://api.github.com/licenses/cc-by-sa-4.0",
+      "node_id": "MDc6TGljZW5zZTI2"
+    },
+    "commit": "44ed2e81cce3e0d134b901907aba75503abd82df",
+    "license_paths": [
+      ".vitepress/theme/components/TranslationNotice.vue",
+      "LICENSE"
+    ]
+  },
+  {
+    "repo": "XTLS/Xray-examples",
+    "url": "https://github.com/XTLS/Xray-examples",
+    "checked_at": "2026-11-12T15:22:09.736117+00:00",
+    "default_branch": "main",
+    "archived": false,
+    "pushed_at": "2026-09-16T18:42:53Z",
+    "license_metadata": {
+      "key": "cc-by-sa-4.0",
+      "name": "Creative Commons Attribution Share Alike 4.0 International",
+      "spdx_id": "CC-BY-SA-4.0",
+      "url": "https://api.github.com/licenses/cc-by-sa-4.0",
+      "node_id": "MDc6TGljZW5zZTI2"
+    },
+    "commit": "167cded1a33ac7b0ce76fcf00ea2d8fb0604e927",
+    "license_paths": [
+      "LICENSE"
+    ]
+  },
+  {
+    "repo": "tauri-apps/tauri",
+    "url": "https://github.com/tauri-apps/tauri",
+    "checked_at": "2026-11-12T15:22:09.736326+00:00",
+    "default_branch": "dev",
+    "archived": false,
+    "pushed_at": "2026-11-12T09:37:33Z",
+    "license_metadata": {
+      "key": "apache-2.0",
+      "name": "Apache License 2.0",
+      "spdx_id": "Apache-2.0",
+      "url": "https://api.github.com/licenses/apache-2.0",
+      "node_id": "MDc6TGljZW5zZTI="
+    },
+    "commit": "5edd31c8a8914674c217b21a660a914823da2dae",
+    "license_paths": [
+      ".github/workflows/check-license-header.yml",
+      ".scripts/ci/check-license-header.js",
+      "LICENSE-APACHE-2.0",
+      "LICENSE-MIT",
+      "LICENSE.spdx",
+      "crates/tauri-build/LICENSE-APACHE-2.0",
+      "crates/tauri-build/LICENSE-MIT",
+      "crates/tauri-bundler/License-Apache.md",
+      "crates/tauri-bundler/License-MIT.md",
+      "crates/tauri-cli/LICENSE-APACHE-2.0",
+      "crates/tauri-cli/LICENSE-MIT",
+      "crates/tauri-codegen/LICENSE-APACHE-2.0",
+      "crates/tauri-codegen/LICENSE-MIT",
+      "crates/tauri-driver/LICENSE-APACHE-2.0",
+      "crates/tauri-driver/LICENSE-MIT",
+      "crates/tauri-driver/LICENSE.spdx",
+      "crates/tauri-macros/LICENSE-APACHE-2.0",
+      "crates/tauri-macros/LICENSE-MIT",
+      "crates/tauri-runtime-wry/LICENSE-APACHE-2.0",
+      "crates/tauri-runtime-wry/LICENSE-MIT",
+      "crates/tauri-runtime/LICENSE-APACHE-2.0",
+      "crates/tauri-runtime/LICENSE-MIT",
+      "crates/tauri-utils/LICENSE-APACHE-2.0",
+      "crates/tauri-utils/LICENSE-MIT",
+      "crates/tauri/LICENSE-APACHE-2.0",
+      "crates/tauri/LICENSE-MIT",
+      "crates/tests/restart/LICENSE-APACHE-2.0",
+      "crates/tests/restart/LICENSE-MIT",
+      "crates/tests/restart/LICENSE.spdx",
+      "examples/file-associations/src-tauri/.license_template",
+      "packages/api/LICENSE-APACHE-2.0",
+      "packages/api/LICENSE-MIT",
+      "packages/cli/LICENSE-APACHE-2.0",
+      "packages/cli/LICENSE-MIT"
+    ]
+  },
+  {
+    "repo": "tauri-apps/create-tauri-app",
+    "url": "https://github.com/tauri-apps/create-tauri-app",
+    "checked_at": "2026-11-12T15:22:09.736541+00:00",
+    "default_branch": "dev",
+    "archived": false,
+    "pushed_at": "2026-11-11T16:15:43Z",
+    "license_metadata": {
+      "key": "apache-2.0",
+      "name": "Apache License 2.0",
+      "spdx_id": "Apache-2.0",
+      "url": "https://api.github.com/licenses/apache-2.0",
+      "node_id": "MDc6TGljZW5zZTI="
+    },
+    "commit": "c6f5cf68942f187ba7bb738a49ee505c28e6ca5a",
+    "license_paths": [
+      "LICENSE.spdx",
+      "LICENSE_APACHE-2.0",
+      "LICENSE_MIT",
+      "node/LICENSE_APACHE-2.0",
+      "node/LICENSE_MIT"
+    ]
+  },
+  {
+    "repo": "mullvad/windows-service-rs",
+    "url": "https://github.com/mullvad/windows-service-rs",
+    "checked_at": "2026-11-12T15:22:14.192809+00:00",
+    "default_branch": "main",
+    "archived": false,
+    "pushed_at": "2026-10-25T08:24:09Z",
+    "license_metadata": {
+      "key": "apache-2.0",
+      "name": "Apache License 2.0",
+      "spdx_id": "Apache-2.0",
+      "url": "https://api.github.com/licenses/apache-2.0",
+      "node_id": "MDc6TGljZW5zZTI="
+    },
+    "commit": "82fe85adb2f50c9c0ee6761f148769f223a987ac",
+    "license_paths": [
+      "LICENSE-APACHE",
+      "LICENSE-MIT"
+    ]
+  },
+  {
+    "repo": "microsoft/windows-rs",
+    "url": "https://github.com/microsoft/windows-rs",
+    "checked_at": "2026-11-12T15:22:14.243836+00:00",
+    "default_branch": "master",
+    "archived": false,
+    "pushed_at": "2026-11-11T14:54:29Z",
+    "license_metadata": {
+      "key": "apache-2.0",
+      "name": "Apache License 2.0",
+      "spdx_id": "Apache-2.0",
+      "url": "https://api.github.com/licenses/apache-2.0",
+      "node_id": "MDc6TGljZW5zZTI="
+    },
+    "commit": "8ca69fdaa9d69c78b9bcfbee96c6916f2282e7f0",
+    "license_paths": [
+      "crates/libs/animation/license-apache-2.0",
+      "crates/libs/animation/license-mit",
+      "crates/libs/bindgen/license-apache-2.0",
+      "crates/libs/bindgen/license-mit",
+      "crates/libs/canvas/license-apache-2.0",
+      "crates/libs/canvas/license-mit",
+      "crates/libs/clang-sys/license-apache-2.0",
+      "crates/libs/clang-sys/license-mit",
+      "crates/libs/clang/license-apache-2.0",
+      "crates/libs/clang/license-mit",
+      "crates/libs/collections/license-apache-2.0",
+      "crates/libs/collections/license-mit",
+      "crates/libs/composition/license-apache-2.0",
+      "crates/libs/composition/license-mit",
+      "crates/libs/core/license-apache-2.0",
+      "crates/libs/core/license-mit",
+      "crates/libs/cppwinrt/license-apache-2.0",
+      "crates/libs/cppwinrt/license-mit",
+      "crates/libs/default/license-apache-2.0",
+      "crates/libs/default/license-mit",
+      "crates/libs/future/license-apache-2.0",
+      "crates/libs/future/license-mit",
+      "crates/libs/implement/license-apache-2.0",
+      "crates/libs/implement/license-mit",
+      "crates/libs/interface/license-apache-2.0",
+      "crates/libs/interface/license-mit",
+      "crates/libs/link/license-apache-2.0",
+      "crates/libs/link/license-mit",
+      "crates/libs/metadata/license-apache-2.0",
+      "crates/libs/metadata/license-mit",
+      "crates/libs/numerics/license-apache-2.0",
+      "crates/libs/numerics/license-mit",
+      "crates/libs/pickers/license-apache-2.0",
+      "crates/libs/pickers/license-mit",
+      "crates/libs/rdl/license-apache-2.0",
+      "crates/libs/rdl/license-mit",
+      "crates/libs/reactor-setup/license-apache-2.0",
+      "crates/libs/reactor-setup/license-mit",
+      "crates/libs/reactor/license-apache-2.0",
+      "crates/libs/reactor/license-mit",
+      "crates/libs/reference/license-apache-2.0",
+      "crates/libs/reference/license-mit",
+      "crates/libs/registry/license-apache-2.0",
+      "crates/libs/registry/license-mit",
+      "crates/libs/result/license-apache-2.0",
+      "crates/libs/result/license-mit",
+      "crates/libs/services/license-apache-2.0",
+      "crates/libs/services/license-mit",
+      "crates/libs/strings/license-apache-2.0",
+      "crates/libs/strings/license-mit",
+      "crates/libs/sys/license-apache-2.0",
+      "crates/libs/sys/license-mit",
+      "crates/libs/text/license-apache-2.0",
+      "crates/libs/text/license-mit",
+      "crates/libs/threading/license-apache-2.0",
+      "crates/libs/threading/license-mit",
+      "crates/libs/time/license-apache-2.0",
+      "crates/libs/time/license-mit",
+      "crates/libs/version/license-apache-2.0",
+      "crates/libs/version/license-mit",
+      "crates/libs/webview/license-apache-2.0",
+      "crates/libs/webview/license-mit",
+      "crates/libs/window/license-apache-2.0",
+      "crates/libs/window/license-mit",
+      "crates/libs/windows/license-apache-2.0",
+      "crates/libs/windows/license-mit",
+      "crates/tools/license",
+      "license-apache-2.0",
+      "license-mit",
+      "metadata/winrt/Windows.ApplicationModel.Store.LicenseManagement.rdl"
+    ]
+  },
+  {
+    "repo": "dalek-cryptography/curve25519-dalek",
+    "url": "https://github.com/dalek-cryptography/curve25519-dalek",
+    "checked_at": "2026-11-12T15:22:15.357679+00:00",
+    "default_branch": "main",
+    "archived": false,
+    "pushed_at": "2026-09-24T14:03:37Z",
+    "license_metadata": {
+      "key": "other",
+      "name": "Other",
+      "spdx_id": "NOASSERTION",
+      "url": null,
+      "node_id": "MDc6TGljZW5zZTA="
+    },
+    "commit": "97a020d185970839ed1d3f3a5c22aca816631786",
+    "license_paths": [
+      "curve25519-dalek-derive/LICENSE-APACHE",
+      "curve25519-dalek-derive/LICENSE-MIT",
+      "curve25519-dalek/LICENSE",
+      "ed25519-dalek/LICENSE",
+      "x25519-dalek/LICENSE"
+    ]
+  },
+  {
+    "repo": "WireGuard/wintun",
+    "url": "https://github.com/WireGuard/wintun",
+    "checked_at": "2026-11-12T15:22:15.560426+00:00",
+    "default_branch": "master",
+    "archived": false,
+    "pushed_at": "2026-03-18T17:49:39Z",
+    "license_metadata": {
+      "key": "other",
+      "name": "Other",
+      "spdx_id": "NOASSERTION",
+      "url": null,
+      "node_id": "MDc6TGljZW5zZTA="
+    },
+    "commit": "ec0a6b98456fe1ba52567bb2add4bbf5f64315a1",
+    "license_paths": [
+      "COPYING",
+      "prebuilt-binaries-license.txt"
+    ]
+  },
+  {
+    "repo": "Shurubtsov/rustvpn",
+    "url": "https://github.com/Shurubtsov/rustvpn",
+    "checked_at": "2026-11-12T15:22:19.754405+00:00",
+    "default_branch": "main",
+    "archived": false,
+    "pushed_at": "2026-06-15T10:49:57Z",
+    "license_metadata": null,
+    "commit": "6a942e40624ea4bd2667f994a70aff62a3f2c152",
+    "license_paths": []
+  }
+]

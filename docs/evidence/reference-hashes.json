@@ -1,0 +1,50 @@
+[
+  {
+    "file": "xray-v26.11.9__proxy_tun_README.md.txt",
+    "sha256": "3332c93af1d41a2a8b1305f0e751ab63b60c9a1778729f01a3e38e75566d2a56",
+    "size": 32025,
+    "storage": "local cache only; reference, not code reuse"
+  },
+  {
+    "file": "Shurubtsov__rustvpn__src-tauri_Cargo.toml.txt",
+    "sha256": "ebd2ce5dfd1a442145e66cc5b4f9e99e7890fb262e57c2a41e1fe6edeedd105c",
+    "size": 745,
+    "storage": "local cache only; reference, not code reuse"
+  },
+  {
+    "file": "XTLS__Xray-core__proxy_tun_README.md.txt",
+    "sha256": "3332c93af1d41a2a8b1305f0e751ab63b60c9a1778729f01a3e38e75566d2a56",
+    "size": 32025,
+    "storage": "local cache only; reference, not code reuse"
+  },
+  {
+    "file": "XTLS__Xray-core__infra_conf_tun.go.txt",
+    "sha256": "40db7516078c9b1c021cc24f2aa23b96c6fde984e4450f18804b0670faecb15a",
+    "size": 3782,
+    "storage": "local cache only; reference, not code reuse"
+  },
+  {
+    "file": "Shurubtsov__rustvpn__README.md.txt",
+    "sha256": "056264e620aec4db1ee570363f9bed17b05cb02e438d1e579b3c7629d6bec1b5",
+    "size": 7657,
+    "storage": "local cache only; reference, not code reuse"
+  },
+  {
+    "file": "xray-v26.11.9__go.mod.txt",
+    "sha256": "05b5ec4430acb5898c9c95e3886a41b4399a4e05d605165833498432baa4ade9",
+    "size": 2666,
+    "storage": "local cache only; reference, not code reuse"
+  },
+  {
+    "file": "XTLS__Xray-core__proxy_tun_config.proto.txt",
+    "sha256": "5fe91d8984a9cb61fe8c109fdbff08e027b7227450fc6b58da7ed145a970260b",
+    "size": 563,
+    "storage": "local cache only; reference, not code reuse"
+  },
+  {
+    "file": "xray-v26.11.9__infra_conf_tun.go.txt",
+    "sha256": "40db7516078c9b1c021cc24f2aa23b96c6fde984e4450f18804b0670faecb15a",
+    "size": 3782,
+    "storage": "local cache only; reference, not code reuse"
+  }
+]

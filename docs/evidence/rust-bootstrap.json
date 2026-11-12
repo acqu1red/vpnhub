@@ -1,0 +1,6 @@
+{
+  "url": "https://static.rust-lang.org/rustup/dist/aarch64-apple-darwin/rustup-init",
+  "sha256": "63752a1919a3a4793173ec70f8f212621a7ce38ba6a246095984482f4de20f9f",
+  "toolchain": "1.99.1",
+  "host": "aarch64-apple-darwin"
+}
