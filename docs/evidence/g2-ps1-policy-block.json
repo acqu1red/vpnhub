@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-13",
+  "scope": "User-reported PowerShell pre-execution denial; not a service runtime failure",
+  "command": "powershell -NoProfile -File D:\\service-smoke.ps1 -Binary D:\\ScrumeVPNSvc.exe -DisposableLab",
+  "error": "File cannot be loaded because running scripts is disabled on this system",
+  "fully_qualified_error_id": "UnauthorizedAccess",
+  "script_executed": false,
+  "service_created_by_this_attempt": false,
+  "execution_policy_changed": false,
+  "next": "Native ScrumeVPNLab.exe --disposable-lab on Windows; BUILT_NOT_EXECUTED"
+}

@@ -28,6 +28,7 @@ SOURCE — SPEC_ORIGINAL.md или прямые D002–D005. PROPOSAL — инж
 | R22 safe errors/logs | PROPOSAL | codes only; VerifiedBundle redacted Debug | redacted_debug test; A47 | Partial; service logger/rotation pending |
 | R23 multi-user ownership | PROPOSAL/OPEN-09 | owner SID design G2/G6 | A22/23 + account switch | DESIGN_ONLY |
 | R24 evidence/status honesty | AGENTS + current request | STATUS/ACCEPTANCE_REPORT/evidence | distinct scopes/results | Current local report supplied |
+| D012/D013 сохранение контекста и Windows handoff | Прямой запрос13.11.2026 | CONTINUE_HERE, SESSION_HANDOFF, WINDOWS_DEVELOPMENT; export_handoff; native MSVC builder | Handoff archive hashes + actual Git history restore test | Source/docs/history portable; actual Windows MSVC restore/build pending |
 
 ## Изменения относительно v1
 

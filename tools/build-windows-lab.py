@@ -9,10 +9,10 @@ import json
 import os
 from pathlib import Path
 import platform
-import shutil
 import subprocess
 import tarfile
 from dev import ROOT, environment, download
+from windows_payload import stage, test_executable
 
 TARGET = 'aarch64-pc-windows-gnullvm'
 
@@ -61,46 +61,19 @@ os.execv(str(r / '.tools/zig-aarch64-macos-0.15.2/zig'), ['zig', 'cc', '-target'
     result = subprocess.run(['cargo', 'test', '--locked', '--release', '--no-run', '-p', 'scrume-windows',
                              '--target', TARGET, '--message-format=json'],
                             env=env, cwd=ROOT, check=True, stdout=subprocess.PIPE, text=True)
-    tests = []
-    for line in result.stdout.splitlines():
-        event = json.loads(line)
-        if event.get('reason') == 'compiler-artifact' and event.get('profile', {}).get('test') and event.get('executable'):
-            tests.append(Path(event['executable']))
-    if len(tests) != 1:
-        raise RuntimeError('Expected one native Windows adapter test executable')
-    out = ROOT / 'artifacts' / 'windows-lab'
-    out.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(ROOT / 'target' / TARGET / 'release/ScrumeVPNSvc.exe', out / 'ScrumeVPNSvc.exe')
-    shutil.copy2(tests[0], out / 'windows-adapter-tests.exe')
-    shutil.copy2(ROOT / 'tools/windows/service-smoke.ps1', out / 'service-smoke.ps1')
-    launcher = (ROOT / 'tools/windows/run-native-tests.cmd').read_text()
-    (out / 'run-native-tests.cmd').write_bytes(launcher.replace('\n', '\r\n').encode('ascii'))
-    # Remove only the superseded launcher produced by this builder.
-    (out / 'run-dpapi-tests.cmd').unlink(missing_ok=True)
-    shutil.copy2(ROOT / 'THIRD_PARTY_NOTICES.txt', out / 'THIRD_PARTY_NOTICES.txt')
-    for source, name in [('LICENSE', 'ZIG-LICENSE.txt'), ('lib/libc/mingw/COPYING', 'MINGW-COPYING.txt'), ('lib/libunwind/LICENSE.TXT', 'LLVM-UNWIND-LICENSE.txt')]:
-        shutil.copy2(tool / source, out / name)
-    (out / 'READ-ME.txt').write_text('''UNSIGNED ARM64 LAB BUILD - NOT A VPN RELEASE
-Target: aarch64-pc-windows-gnullvm (UCRT). Does not contain Xray or Wintun.
-First run run-native-tests.cmd as the active Windows console user, without admin.
-It runs 3 DPAPI tests and 1 console-only IPC test, and saves a log in guest TEMP.
-The service must not be running during the console IPC test.
-For the SCM/status smoke test, use elevated PowerShell in the disposable VM:
-powershell -NoProfile -File .\\service-smoke.ps1 -Binary .\\ScrumeVPNSvc.exe -DisposableLab
-Do not lower ExecutionPolicy; review or sign the local script if your policy requires it.
-The smoke script installs a temporary SYSTEM service, reads status, stops/removes
-its own service, and keeps lab binaries under Program Files for inspection.
-It does not implement a tunnel, enrollment, vault ACLs, or boot-connect.
-''')
-    record = {'status': 'BUILT_NOT_EXECUTED', 'target': TARGET, 'signing': 'UNSIGNED_LAB_ONLY',
-              'toolchain': 'Rust 1.99.1 + Zig ' + pin['version'],
-              'zig_archive_sha256': pin['sha256'],
-              'files': {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(out.iterdir()) if p.is_file() and p.name != 'build-manifest.json'}}
-    (out / 'build-manifest.json').write_text(json.dumps(record, indent=2) + '\n')
+    service = ROOT / 'target' / TARGET / 'release/ScrumeVPNSvc.exe'
+    env['SCRUME_LAB_SERVICE_SHA256'] = hashlib.sha256(service.read_bytes()).hexdigest()
+    subprocess.run(['cargo', 'build', '--locked', '--release', '-p', 'scrume-lab', '--bin', 'ScrumeVPNLab', '--target', TARGET],
+                   env=env, cwd=ROOT, check=True)
+    licenses = [(tool / source, name) for source, name in [
+        ('LICENSE', 'ZIG-LICENSE.txt'), ('lib/libc/mingw/COPYING', 'MINGW-COPYING.txt'),
+        ('lib/libunwind/LICENSE.TXT', 'LLVM-UNWIND-LICENSE.txt')]]
+    out = stage(ROOT, TARGET, 'Rust 1.99.1 + Zig ' + pin['version'], service,
+                test_executable(result.stdout), ROOT / 'target' / TARGET / 'release/ScrumeVPNLab.exe', licenses)
     if args.iso:
         mkisofs = '/Applications/VMware Fusion.app/Contents/Library/mkisofs'
-        subprocess.run([mkisofs, '-quiet', '-J', '-R', '-V', 'SCRUMEVPN_LAB', '-o', str(ROOT / 'artifacts/ScrumeVPN-Lab-ARM64.iso'), str(out)], check=True)
-    print('ARM64 lab payload built; native Windows tests have NOT been executed')
+        subprocess.run([mkisofs, '-quiet', '-J', '-R', '-V', 'SCRUMEVPN_LAB', '-o', str(ROOT / 'artifacts/ScrumeVPN-Lab-ARM64-SCM.iso'), str(out)], check=True)
+    print('ARM64 lab payload built; this build has NOT been executed in Windows')
 
 
 if __name__ == '__main__':

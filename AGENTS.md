@@ -45,4 +45,4 @@
 
 ## Первая инструкция
 
-Прочитать актуальные `CODEX_MASTER_SPEC.md`, `docs/DECISIONS.md`, `docs/EXECUTION_PLAN.md` и `docs/STATUS.md`. Продолжать ближайшую незаблокированную задачу. Не создавать вымышленные test results или completed status. Предлогинное подключение после первоначальной авторизации и service-only vault утверждены пользователем; см. DECISIONS.md.
+Прочитать `CONTINUE_HERE.md`, `docs/SESSION_HANDOFF.md`, актуальные `CODEX_MASTER_SPEC.md`, `docs/DECISIONS.md`, `docs/EXECUTION_PLAN.md` и `docs/STATUS.md`. Продолжать ближайшую незаблокированную задачу. Не создавать вымышленные test results или completed status. Предлогинное подключение после первоначальной авторизации и service-only vault утверждены пользователем; см. DECISIONS.md. SOURCE 13.11.2026: попутно сохранять весь контекст в проекте для будущего перехода на Windows. После этапа обновлять handoff/status/evidence; новые решения добавлять в DECISIONS. Не оставлять единственную копию важного результата в чате или ignored artifacts.

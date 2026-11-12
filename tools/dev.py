@@ -19,7 +19,8 @@ ROOT = Path(__file__).resolve().parents[1]
 def environment():
     env = os.environ.copy()
     local = ROOT / '.tools' / 'cargo'
-    if (local / 'bin' / 'rustup').is_file():
+    executable = 'rustup.exe' if os.name == 'nt' else 'rustup'
+    if (local / 'bin' / executable).is_file():
         env['CARGO_HOME'] = str(local)
         env['RUSTUP_HOME'] = str(ROOT / '.tools' / 'rustup')
         env['PATH'] = str(local / 'bin') + os.pathsep + env.get('PATH', '')
@@ -150,9 +151,11 @@ def licenses():
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=['doctor', 'test', 'fetch-runtime', 'licenses', 'check-windows'])
+    parser.add_argument('command', choices=['doctor', 'test', 'fetch-runtime', 'licenses', 'check-windows', 'export-handoff'])
     args = parser.parse_args()
+    from export_handoff import export_handoff
     commands = {'doctor': doctor, 'test': tests, 'fetch-runtime': fetch_runtime, 'licenses': licenses,
+                'export-handoff': lambda: export_handoff(ROOT),
                 'check-windows': lambda: run('cargo', 'check', '--locked', '--workspace', '--target', 'x86_64-pc-windows-msvc')}
     commands[args.command]()
 

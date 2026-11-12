@@ -1,0 +1,8 @@
+    Checking windows-sys v0.59.0
+    Checking scrume-core v0.1.0 (/Users/headliner/Documents/vpn/ScrumeVPN/crates/scrume-core)
+    Checking scrume-windows v0.1.0 (/Users/headliner/Documents/vpn/ScrumeVPN/crates/scrume-windows)
+    Checking windows-service v0.8.0
+    Checking scrume-service v0.1.0 (/Users/headliner/Documents/vpn/ScrumeVPN/apps/service)
+    Checking scrume-lab v0.1.0 (/Users/headliner/Documents/vpn/ScrumeVPN/apps/lab)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 3.11s
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.07s

@@ -4,4 +4,7 @@
 pub mod dpapi;
 #[cfg(windows)]
 #[allow(unsafe_code)]
+pub mod lab_directory;
+#[cfg(windows)]
+#[allow(unsafe_code)]
 pub mod pipe;

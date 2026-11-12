@@ -1,5 +1,8 @@
 # ScrumeVPN — начать здесь
 
+Перенос на Windows / новая рабочая сессия: **[CONTINUE_HERE.md](CONTINUE_HERE.md)**,
+[точка продолжения](docs/SESSION_HANDOFF.md), [Windows setup](docs/WINDOWS_DEVELOPMENT.md).
+
 Дата: 12.11.2026. Теперь это документация **и начальная реализация**, не готовый VPN/MSI. Текущее проверенное состояние — docs/STATUS.md. Исходный SPEC_ORIGINAL.md сохранён без изменений, v1 инженерного ТЗ — docs/archive/MASTER_SPEC_v1.md.
 
 1. CODEX_MASTER_SPEC.md — переработанное исполнимое ТЗ v2.
@@ -36,3 +39,5 @@ Boot-connect после initial enrollment утверждён пользоват
 ## Лабораторная Windows ARM64 сборка
 
 На текущем Mac: `python3 tools/build-windows-lab.py --iso`. Pinned Zig проверяется по SHA256; создаются native EXE и read-only ISO без изменения VM. В guest открыть `run-native-tests.cmd` с ISO. Эти проверки охватывают DPAPI primitive и console IPC; TUN/vault ACL/boot/MSI отдельно. Дальнейшие шаги и границы — docs/WINDOWS_LAB.md.
+
+Для переноса: `python3 tools/dev.py export-handoff` (clean committed Git). Исходники+history в artifacts/handoff. На Windows сборка: `py -3 tools/build-windows.py --target x86_64-pc-windows-msvc`; подробности в WINDOWS_DEVELOPMENT. Новый SCM ISO: `artifacts/ScrumeVPN-Lab-ARM64-SCM.iso`.

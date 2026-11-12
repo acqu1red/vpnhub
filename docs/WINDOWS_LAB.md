@@ -25,14 +25,14 @@ Recovery управляет только собственными changes. Ни�
 
 ## Готовый ARM64 payload с текущего Mac
 
-`python3 tools/build-windows-lab.py --iso` создаёт `artifacts/windows-lab` и `artifacts/ScrumeVPN-Lab-ARM64.iso`. Rust1.99.1 target aarch64-pc-windows-gnullvm + Zig0.15.2 (официальный архив, pinned SHA256). Native PE ARM64 сборка успешна, Windows runtime result отдельно. Это дополнительный lab build; целевой MSVC x64 release не заменяет.
+`python3 tools/build-windows-lab.py --iso` создаёт `artifacts/windows-lab` и `artifacts/ScrumeVPN-Lab-ARM64-SCM.iso`. Rust1.99.1 target aarch64-pc-windows-gnullvm + Zig0.15.2 (официальный архив, pinned SHA256). Native PE ARM64 сборка успешна, Windows runtime result отдельно. Это дополнительный lab build; целевой MSVC x64 release не заменяет.
 
 1. После обновлений Windows сохранить clean snapshot. В Fusion Virtual Machine → CD/DVD → Choose Disc Image выбрать lab ISO. Host folders не расшаривать.
 2. В Windows active console user открыть `run-native-tests.cmd` с CD, без elevation. Все4 tests должны завершиться:3 DPAPI primitive и1 native IPC test. Launcher сохраняет log в guest TEMP и оставляет результат на экране. Наличие работающей ScrumeVPNSvc блокирует pipe test; выполнять до SCM smoke.
 3. Pipe test проверяет real token SID/session, отказ второго listener, reconnect, oversize и idle stop. Он `ignored` в обычном CI, поскольку hosted/service session не является active console. Сам test executable запускать с `--include-ignored --test-threads=1`.
 4. DPAPI roundtrip/corruption/bounds **не** доказывают service-only ownership: A21 требует будущего filesystem vault + ACL + second user/cross-machine.
-5. В elevated guest PowerShell: `powershell -NoProfile -File D:\service-smoke.ps1 -Binary D:\ScrumeVPNSvc.exe -DisposableLab` (уточнить CD letter). Только новый disposable lab: скрипт откажет при существующих service/directory, установит temporary Manual LocalSystem status service под защищённым Program Files, проверит status/stop и удаление SCM. PASS выводится только после cleanup. Бинарник остаётся для inspection; для повторного чистого прогона использовать snapshot.
-6. Если ExecutionPolicy запрещает локальный ps1 — остановиться и согласовать штатное signing/review с администратором стенда. Не применять Bypass/Unrestricted, не отключать Defender/UAC. Скрипт ещё не был исполнен; сборка EXE его не проверяет.
+5. Новый native SCM runner в elevated guest terminal: `D:\ScrumeVPNLab.exe --disposable-lab` (уточнить CD letter). Выполнять в новом disposable lab после snapshot. Установка Manual LocalSystem/status/stop/delete, fixed защищённый Program Files path, build-pinned hash. Этот runner собран, но ещё NOT_RUN. Legacy ps1 на текущей VM фактически отклонён ExecutionPolicy до запуска; это не runtime failure службы.
+6. Не менять ExecutionPolicy/UAC/Defender. Для обычной работы прямо на Windows использовать docs/WINDOWS_DEVELOPMENT.md и native MSVC builder. Последнее указание пользователя — продолжать дальше на Windows; VMware tests сейчас не запускать.
 7. Сохранить native logs, binary SHA256 из build-manifest и итог SCM JSON. Actual4/4 результат записан в docs/evidence/g2-native-arm64-tests.txt; SCM и полный security acceptance остаются NOT_RUN. Только затем расширять тесты до anonymous/remote/second user и сетевых экспериментов.
 
 Encrypted vmrun требует пароль VM. Не извлекать его из Keychain и не передавать в чат/журналы/CLI argv. Guest secrets отсутствуют в payload. На текущем этапе не настраивать дополнительный remote login или host home sharing ради удобства автоматизации.

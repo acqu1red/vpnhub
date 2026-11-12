@@ -1,0 +1,18 @@
+{
+  "status": "BUILT_NOT_EXECUTED",
+  "target": "aarch64-pc-windows-gnullvm",
+  "signing": "UNSIGNED_LAB_ONLY",
+  "toolchain": "Rust 1.99.1 + Zig 0.15.2",
+  "files": {
+    "LLVM-UNWIND-LICENSE.txt": "b5efebcaca80879234098e52d1725e6d9eb8fb96a19fce625d39184b705f7b6d",
+    "MINGW-COPYING.txt": "99a69660981156c21336fdb5661f89341b013c94e4bf9e1c7467b4745718397f",
+    "READ-ME.txt": "9a4a7d5e9f5fba004442f03046f0d8a733c9b611b46629873249d9dab34184e4",
+    "ScrumeVPNLab.exe": "204624ad2857b7fbdd951cc2da4b2a2b15362af077033048532062ead53afc47",
+    "ScrumeVPNSvc.exe": "41f8be4d52f944017fb5b85050ebdd58d27704f1b12b9bfac5aeb85ed64e1871",
+    "THIRD_PARTY_NOTICES.txt": "e494e5b3e977540f32f902714ec28ac793a91b734de219b9fb381e52b5f4a0d7",
+    "ZIG-LICENSE.txt": "5c537d6853e005298a285d508cff9ac7192cea23576c840d485b2b586a7ff177",
+    "run-native-tests.cmd": "598140b5b4e3e75c9b074da135626cfc3efa094e5107195369de076e3f6fb2c6",
+    "service-smoke.ps1": "4c66944173f2fd1a9c84b5b53e8b5b1f922f05e0e5ba1ea84cc298219f6e524d",
+    "windows-adapter-tests.exe": "f4b09d48d07c96b1559e02debcbd44c229b7a319847804e660ae4139b950efdf"
+  }
+}

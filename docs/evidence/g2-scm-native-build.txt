@@ -1,0 +1,12 @@
+info: component rust-std for target aarch64-pc-windows-gnullvm is up to date
+   Compiling windows-sys v0.59.0
+   Compiling windows-service v0.8.0
+   Compiling scrume-windows v0.1.0 (/Users/headliner/Documents/vpn/ScrumeVPN/crates/scrume-windows)
+   Compiling scrume-service v0.1.0 (/Users/headliner/Documents/vpn/ScrumeVPN/apps/service)
+    Finished `release` profile [optimized] target(s) in 6.33s
+   Compiling windows-sys v0.59.0
+   Compiling scrume-windows v0.1.0 (/Users/headliner/Documents/vpn/ScrumeVPN/crates/scrume-windows)
+    Finished `release` profile [optimized] target(s) in 5.88s
+   Compiling scrume-lab v0.1.0 (/Users/headliner/Documents/vpn/ScrumeVPN/apps/lab)
+    Finished `release` profile [optimized] target(s) in 2.68s
+ARM64 lab payload built; native Windows tests have NOT been executed

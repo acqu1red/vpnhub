@@ -15,3 +15,5 @@
 - Development SBOM относится ко всем Cargo targets; окончательный MSI SBOM/licenses/signatures ещё не существуют.
 
 Никаких изменений production issuer/Xray/employees и сети хостового Mac не выполнялось.
+
+Native SCM runner собран, но не запущен: legacy ps1 заблокирован ExecutionPolicy. Пользователь переносит дальнейшую работу на Windows. Private handoff содержит source/history/evidence; tools/cache/VM нужно восстановить или перенести отдельно, как описано в WINDOWS_DEVELOPMENT.

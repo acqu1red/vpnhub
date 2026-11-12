@@ -10,7 +10,7 @@
       },
       {
         "name": "scrumevpn:cargo-lock-sha256",
-        "value": "bc7c06489e62a26814ed6d000abe0f8661e639ca43ada6b2ceeea31ef39ac7bd"
+        "value": "7e9aeb4bab58d0299ff647584c34bb30cb22fc9d58da70b62eeb0ae2d0cfafa7"
       }
     ]
   },
@@ -1101,9 +1101,12 @@
         "pkg:cargo/base64@0.22.1",
         "pkg:cargo/ed25519-dalek@2.2.0",
         "pkg:cargo/scrume-core@0.1.0",
+        "pkg:cargo/scrume-windows@0.1.0",
         "pkg:cargo/serde@1.0.228",
         "pkg:cargo/serde_json@1.0.145",
-        "pkg:cargo/uuid@1.18.1"
+        "pkg:cargo/sha2@0.10.9",
+        "pkg:cargo/uuid@1.18.1",
+        "pkg:cargo/windows-service@0.8.0"
       ]
     },
     {

@@ -17,7 +17,7 @@ SOURCE: аудит, переработка ТЗ и реализация по э�
 
 macOS arm64, Rust1.99.1 изолированно в .tools; Node24.11.0, Python3.9.6. Shell profile не менялся. Локальные commits, без публикации.
 
-- `python3 tools/dev.py test`: PASS — fmt/clippy, **29 Rust tests +8 Node HTTP +4 Python tools =41**. Node34 public vectors проверяются отдельно; Rust дополнительно принимает Python fixture, отвергает его повторную сериализацию без новой подписи.
+- `python3 tools/dev.py test`: PASS — fmt/clippy, **29 Rust tests +8 Node HTTP +6 Python tools =43**. Node34 public vectors проверяются отдельно; Rust дополнительно принимает Python fixture, отвергает его повторную сериализацию без новой подписи.
 - Optional PyCA50.0.2 reference проверил **35 public vectors**. Private test keys существуют только в памяти генераторов, в fixtures только public material. Четыре Mac wheels сверены с official PyPI hashes; это local dev tool, не production issuer.
 - Windows x64/ARM64 MSVC cargo check/clippy PASS. Это cross-check, не MSVC EXE linking и не Windows CI.
 - ARM64 native EXE и adapter-test EXE успешно собраны на Mac через Rust gnullvm + pinned/hash-verified Zig0.15.2. Payload `artifacts/windows-lab`, read-only ISO `artifacts/ScrumeVPN-Lab-ARM64.iso`. Signing: UNSIGNED_LAB_ONLY. Build manifests сохраняют исходный BUILT_NOT_EXECUTED; отдельный runtime evidence теперь подтверждает4 native adapter tests PASS, 0.15s.
@@ -37,8 +37,15 @@ Encrypted vmrun guest operations требуют VM password; агент не ч�
 
 ## Следующий этап
 
-1. Clean snapshot готов; выполнить SCM smoke и собрать guest build hashes. Исправить ошибки по результатам; собрать build hashes/evidence.
+1. SOURCE: пользователь решил продолжать далее напрямую на Windows. Перенести private handoff, прочитать CONTINUE_HERE и SESSION_HANDOFF; подготовить MSVC tools и выполнить native SCM smoke. VMware тесты сейчас не продолжать.
 2. Реализовать protected filesystem vault и durable rollback state после проверки native security boundary; проверить ACL/second user/reboot.
 3. G5 настоящий Xray TUN с baseline/recovery на approved staging, до GUI/MSI. Staging и существующий issuer source пока не предоставлены. Не использовать production сведения из исходного SPEC как разрешение на подключение.
 
 Production issuer/Xray/employees и сеть хостового Mac не изменялись. Главный остаточный риск — native Windows network lifecycle и server revoke semantics.
+
+
+## Перенос на Windows и текущая незавершённая задача
+
+SOURCE13.11.2026: весь код, документация и контекст сохраняются внутри проекта для переноса. CONTINUE_HERE.md — entry point, docs/SESSION_HANDOFF.md — точка продолжения, docs/WINDOWS_DEVELOPMENT.md — prerequisites/restore/build/run. `tools/dev.py export-handoff` создаёт private ZIP committed source/evidence + Git history bundle + SHA256. Два automated tests проверяют реальное восстановление истории и отказ при uncommitted работе. Generated Mac caches/tools/VM/secrets не входят; важные evidence находятся в docs/evidence.
+
+Попытка service-smoke.ps1 была **BLOCKED до исполнения**: ExecutionPolicy / running scripts is disabled (пользователь передал точную ошибку). Служба этим тестом не создавалась. Написан отдельный native SCM lab EXE без PowerShell, без auto-elevation и изменения policies. Использует проверенный windows-service, новый fixed protected directory, pinned service hash, bounded start/stop, cleanup и проверку удаления SCM до PASS. ARM64 EXE собран на Mac; runtime нового runner **NOT_RUN**. Windows MSVC builder подготовлен; actual linking на чистой Windows ещё не проводилось. Новый payload/ISO с суффиксом -SCM не подменяет старое runtime evidence4/4 из e772fd8.

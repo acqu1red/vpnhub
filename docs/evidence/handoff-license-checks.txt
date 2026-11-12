@@ -1,0 +1,3 @@
++ cargo metadata --locked --format-version 1
+Dependency inventory: 70 packages; unknown: none
+Inventory is evidence, not full license approval or a release SBOM.
