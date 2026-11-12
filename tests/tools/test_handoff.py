@@ -15,8 +15,9 @@ spec.loader.exec_module(handoff)
 class HandoffTests(unittest.TestCase):
     def prepare(self, root):
         subprocess.run(['git', 'init', '-q', str(root)], check=True)
-        (root / '.gitignore').write_text('artifacts/\n.tools/\n')
-        (root / 'CONTINUE_HERE.md').write_text('Context and current work\n')
+        subprocess.run(['git', '-C', str(root), 'config', 'core.autocrlf', 'false'], check=True)
+        (root / '.gitignore').write_bytes(b'artifacts/\n.tools/\n')
+        (root / 'CONTINUE_HERE.md').write_bytes(b'Context and current work\n')
         subprocess.run(['git', '-C', str(root), 'add', '.'], check=True)
         subprocess.run(['git', '-C', str(root), '-c', 'user.name=Lab Test', '-c', 'user.email=lab@example.invalid', '-c', 'commit.gpgsign=false', 'commit', '-qm', 'fixture'], check=True)
 
@@ -47,3 +48,18 @@ class HandoffTests(unittest.TestCase):
             (root / 'new-notes.md').write_text('not committed yet')
             with self.assertRaises(ValueError):
                 handoff.export_handoff(root)
+
+    def test_export_uses_committed_bytes_with_crlf_worktree(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            self.prepare(root)
+            subprocess.run(['git', '-C', str(root), 'config', 'core.autocrlf', 'true'], check=True)
+            expected = subprocess.check_output(['git', '-C', str(root), 'show', 'HEAD:CONTINUE_HERE.md'])
+            (root / 'CONTINUE_HERE.md').write_bytes(expected.replace(b'\n', b'\r\n'))
+            # Refresh index/stat information after changing newline policy.
+            # Renormalization has no staged diff because committed bytes match.
+            subprocess.run(['git', '-C', str(root), 'add', '--renormalize', 'CONTINUE_HERE.md'], check=True)
+            self.assertFalse(subprocess.check_output(['git', '-C', str(root), 'status', '--porcelain']).strip())
+            archive = handoff.export_handoff(root)
+            with zipfile.ZipFile(archive) as zipped:
+                self.assertEqual(zipped.read('ScrumeVPN/CONTINUE_HERE.md'), expected)

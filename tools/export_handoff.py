@@ -34,7 +34,11 @@ def export_handoff(root):
         bundle = Path(temporary) / 'repository.bundle'
         git(root, 'bundle', 'create', str(bundle), '--all')
         git(root, 'bundle', 'verify', str(bundle))
-        hashes = {name: hashlib.sha256((root / name).read_bytes()).hexdigest() for name in sorted(files)}
+        # Read committed blobs, not checkout bytes: Windows core.autocrlf can
+        # change working-tree newlines without making Git status dirty. ZIP and
+        # bundle must describe identical committed source on every host.
+        contents = {name: git(root, 'show', 'HEAD:' + name) for name in sorted(files)}
+        hashes = {name: hashlib.sha256(data).hexdigest() for name, data in contents.items()}
         hashes['repository.bundle'] = hashlib.sha256(bundle.read_bytes()).hexdigest()
         manifest = {'format_version': 1, 'visibility': 'PRIVATE_LOCAL_TRANSFER_ONLY',
                     'head': revision, 'branch': git(root, 'branch', '--show-current').decode().strip(),
@@ -43,7 +47,7 @@ def export_handoff(root):
         temporary_zip = Path(temporary) / 'handoff.zip'
         with zipfile.ZipFile(temporary_zip, 'w', zipfile.ZIP_DEFLATED) as out:
             for name in sorted(files):
-                out.write(root / name, 'ScrumeVPN/' + name)
+                out.writestr('ScrumeVPN/' + name, contents[name])
             out.write(bundle, 'ScrumeVPN/repository.bundle')
             out.writestr('ScrumeVPN/HANDOFF-MANIFEST.json', json.dumps(manifest, indent=2) + '\n')
         with zipfile.ZipFile(temporary_zip) as check:

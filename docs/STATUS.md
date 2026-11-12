@@ -17,7 +17,7 @@ SOURCE: аудит, переработка ТЗ и реализация по э�
 
 macOS arm64, Rust1.99.1 изолированно в .tools; Node24.11.0, Python3.9.6. Shell profile не менялся. Git-история сохраняется; пользователь поручил публикацию в PRIVATE https://github.com/acqu1red/vpnhub.git (D014).
 
-- `python3 tools/dev.py test`: PASS — fmt/clippy, **29 Rust tests +8 Node HTTP +6 Python tools =43**. Node34 public vectors проверяются отдельно; Rust дополнительно принимает Python fixture, отвергает его повторную сериализацию без новой подписи.
+- `python3 tools/dev.py test`: PASS — fmt/clippy, **29 Rust tests +8 Node HTTP +7 Python tools =44**. Node34 public vectors проверяются отдельно; Rust дополнительно принимает Python fixture, отвергает его повторную сериализацию без новой подписи.
 - Optional PyCA50.0.2 reference проверил **35 public vectors**. Private test keys существуют только в памяти генераторов, в fixtures только public material. Четыре Mac wheels сверены с official PyPI hashes; это local dev tool, не production issuer.
 - Windows x64/ARM64 MSVC cargo check/clippy PASS. Это cross-check, не MSVC EXE linking и не Windows CI.
 - ARM64 native EXE и adapter-test EXE успешно собраны на Mac через Rust gnullvm + pinned/hash-verified Zig0.15.2. Payload `artifacts/windows-lab`, read-only ISO `artifacts/ScrumeVPN-Lab-ARM64.iso`. Signing: UNSIGNED_LAB_ONLY. Build manifests сохраняют исходный BUILT_NOT_EXECUTED; отдельный runtime evidence теперь подтверждает4 native adapter tests PASS, 0.15s.
@@ -54,3 +54,6 @@ SOURCE13.11.2026: весь код, документация и контекст 
 ## GitHub publication — D014
 
 Пользователь13.11.2026 поручил commit/push в acqu1red/vpnhub. GitHub API подтвердил PRIVATE, пустой repository и push/admin access перед первым push. Публикуется существующая Git-история из vpn/ScrumeVPN с source/docs/evidence/CI; внешний vpn/SPEC.md добавлен как SPEC.md, байты равны SPEC_ORIGINAL.md. README.md и Windows clone instructions добавлены. Caches, VM, passwords и generated build/handoff archives в Git не включены; локальный handoff остаётся в artifacts/handoff. Проверка known credential patterns в131 tracked files и241 historical objects не нашла совпадений. Итоговый remote HEAD/CI проверяются после push; до этого не заявлять CI PASS. Production VPN/server deployment не выполняется.
+
+
+Первый GitHub push:3e5d17e, main, workflow run43299724026. Linux/macOS PASS; Windows MSVC compile/Rust/Node прошли, но Python restore test выявил CRLF/LF mismatch. Исправление: exporter читает committed Git blobs; fixture newline policy сделана независимой от host; добавлен CRLF regression test. Полный local suite теперь44 tests. Новый CI run должен подтвердить Windows; actual status: https://github.com/acqu1red/vpnhub/actions . Настоящий SCM/TUN runtime этим workflow не проверяется.

@@ -30,7 +30,7 @@ python3 tools/dev.py fetch-runtime
 
 На другом компьютере сначала pinned Rust из rust-toolchain.toml, Node.js и Python3; tools/bootstrap.py готовит изолированный Rust на поддерживаемых хостах. Для MSVC EXE linking нужны Windows SDK/Build Tools, cargo check на Mac их не заменяет.
 
-Тесты не требуют VPN server/OTP/production secrets. Runtime download проверяет SHA256, не запускает binaries и не меняет сеть Mac. Windows SCM/TUN/DPAPI/MSI E2E отдельно; workflow подготовлен, но без private remote не выполнялся.
+Тесты не требуют VPN server/OTP/production secrets. Runtime download проверяет SHA256, не запускает binaries и не меняет сеть Mac. Windows SCM/TUN/DPAPI/MSI E2E отдельно; workflow запущен в PRIVATE acqu1red/vpnhub; actual run results смотреть в GitHub Actions.
 
 Boot-connect после initial enrollment утверждён пользователем. Machine DPAPI + ACL service-only — обязательны. Signed policy отключает autoconnect. Это требование и core logic, а не уже выполненный boot test.
 

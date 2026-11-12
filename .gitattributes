@@ -4,3 +4,5 @@
 *.zip -text
 *.iso -text
 *.png -text
+# Preserve the supplied original Markdown byte-for-byte, including its final blank line.
+SPEC.md whitespace=-blank-at-eof

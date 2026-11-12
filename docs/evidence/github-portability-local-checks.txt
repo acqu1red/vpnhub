@@ -1,0 +1,136 @@
++ cargo fmt --all -- --check
++ cargo clippy --workspace --all-targets --locked -- -D warnings
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.18s
++ cargo test --workspace --locked
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.10s
+     Running unittests src/lib.rs (target/debug/deps/scrume_core-7cac6580ec3de4f3)
+
+running 3 tests
+test authorization::tests::anonymous_system_and_session_zero_are_rejected ... ok
+test authorization::tests::transport_and_token_sessions_must_match_active_console ... ok
+test authorization::tests::active_console_status_and_owner_commands ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/security.rs (target/debug/deps/security-5d4846ff1ef199fd)
+
+running 22 tests
+test ipc_rejects_bad_params_types_duplicates_and_sizes ... ok
+test ipc_allowlist_and_no_user_sid ... ok
+test no_boot_before_initial_enrollment ... ok
+test duplicate_outer_field_rejected ... ok
+test expired_cached_envelope_cannot_reconnect ... ok
+test clock_rollback_rejected ... ok
+test active_expiry_requires_cleanup_before_terminal_state ... ok
+test disconnect_invalidates_late_health ... ok
+test crash_requires_recovery_not_immediate_success ... ok
+test boot_connect_does_not_claim_connected ... ok
+test outer_unsigned_expiry_rejected ... ok
+test older_version_rejected ... ok
+test live_bundle_replacement_is_not_silent ... ok
+test python_signed_bytes_are_accepted_without_reserialization ... ok
+test unknown_key_and_oversized_envelope_rejected ... ok
+test semantically_equal_reencoded_json_does_not_keep_signature ... ok
+test redacted_debug_omits_profile_credentials ... ok
+test revoked_pending_connect_never_becomes_connected ... ok
+test signed_policy_can_disable_boot_connect ... ok
+test valid_signature_cannot_override_same_version_payload ... ok
+test same_version_requires_same_payload ... ok
+test independent_signed_vectors ... ok
+
+test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running unittests src/bin/scm-smoke.rs (target/debug/deps/ScrumeVPNLab-f9063a490bb93952)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/scrume_lab-771665284a5b0652)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/scrume_service-cbf70e0caad91a90)
+
+running 4 tests
+test protocol::tests::unauthorized_session_cannot_read_status ... ok
+test protocol::tests::malformed_and_spoofed_input_not_reflected ... ok
+test protocol::tests::sanitized_status_does_not_claim_tunnel_or_expose_identity ... ok
+test protocol::tests::missing_owner_denies_mutation_and_owner_never_gets_fake_success ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/ScrumeVPNSvc-e9387071be6ebe64)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/scrume_windows-65e3c77130bd122a)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests scrume_core
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests scrume_service
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests scrume_windows
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
++ node tools/signing-vectors.mjs verify
+Node verified signatures of 34 public vectors
++ node --test tests/mock-issuer.test.mjs
+✔ enrollment returns no third-party API key and a verified device-bound bundle (30.311208ms)
+✔ OTP resend, expiry and attempt limits are server-enforced (14.425917ms)
+✔ unknown employee does not enroll or leak existence in request response (3.069792ms)
+✔ verify retries are idempotent and cannot switch identity (4.133458ms)
+✔ two devices get distinct identities and revoke is isolated (4.332958ms)
+✔ admin policy publishes a higher signed version with boot disabled (2.672792ms)
+✔ unknown tokens and real-domain email are rejected (2.955542ms)
+✔ successful verify does not reset resend limiter and leases renew with higher version (5.250834ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 135.707916
++ cargo run --locked --quiet -p scrume-lab -- verify-fixture
+VERIFIED public fixture: version=7, signature+binding+lease+schema; no network effects
++ cargo run --locked --quiet -p scrume-service -- --capabilities
+SCM; IPC=STATUS_ONLY_UNVERIFIED; VAULT=NOT_IMPLEMENTED; TUN=NOT_IMPLEMENTED
++ /Library/Developer/CommandLineTools/usr/bin/python3 -m unittest discover -s tests/tools -v
+test_rejects_corrupted_binary (test_download.DownloadTests) ... ok
+test_rejects_http_before_network (test_download.DownloadTests) ... ok
+test_rejects_https_downgrade (test_download.DownloadTests) ... ok
+test_rejects_oversized_archive (test_download.DownloadTests) ... ok
+test_export_uses_committed_bytes_with_crlf_worktree (test_handoff.HandoffTests) ... ok
+test_history_restores_and_ignored_cache_is_excluded (test_handoff.HandoffTests) ... ok
+test_uncommitted_work_is_never_silently_lost (test_handoff.HandoffTests) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.553s
+
+OK
+Private handoff archive: /private/var/folders/ww/mjgpy2hn3t3c_sd33g3t_bzc0000gn/T/tmpge5y7s4t/artifacts/handoff/ScrumeVPN-handoff-30d25fb1bbb5.zip
+HEAD: 30d25fb1bbb532eaaa299fb4e13f162e2363f922 files: 2 SHA256: 4b58eedaa1f7ab11e494ccb6e9ae0bf060f121d9b89e067486305c3e9ab5192d
+Verified source ZIP and Git bundle; clean Windows build/restore is a separate check.
+Private handoff archive: /private/var/folders/ww/mjgpy2hn3t3c_sd33g3t_bzc0000gn/T/tmp84mw_b6j/source/artifacts/handoff/ScrumeVPN-handoff-30d25fb1bbb5.zip
+HEAD: 30d25fb1bbb532eaaa299fb4e13f162e2363f922 files: 2 SHA256: 4b58eedaa1f7ab11e494ccb6e9ae0bf060f121d9b89e067486305c3e9ab5192d
+Verified source ZIP and Git bundle; clean Windows build/restore is a separate check.

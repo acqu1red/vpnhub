@@ -65,7 +65,7 @@ ARM64 EXE успешно слинкован на Mac; runtime нового EXE �
 тесты экспорта реально восстанавливают Git history из bundle и проверяют, что
 uncommitted работа не теряется молча. MSVC compile с Mac не равен Windows linking.
 
-Последний local suite: **29 Rust +8 Node HTTP +6 Python =43 PASS**; Windows
+Последний local suite: **29 Rust +8 Node HTTP +7 Python =44 PASS**; Windows
 x64/ARM64 clippy cross-check PASS;70 Cargo dependencies inventory обновлён.
 См. docs/evidence/handoff-*.txt. Отдельно старый native ARM64 runtime4/4 PASS.
 Новый native SCM runner ARM64 link PASS, runtime NOT_RUN. Перенос реального
@@ -113,3 +113,6 @@ EXECUTION_PLAN — tasks; TRACEABILITY — требование/код/тест;
 API_CONTRACT/SIGNING_CONTRACT — proposed v1, существующий backend его не подтвердил.
 upstreams.lock.json/Cargo.lock/rust-toolchain.toml — воспроизводимые зависимости.
 docs/evidence — сохранённые результаты; artifacts — локально создаваемые файлы.
+
+
+GitHub publication D014 выполнена в main. Первый CI run43299724026: Linux/macOS PASS, Windows нашёл CRLF mismatch в handoff test после успешных Rust/MSVC и Node шагов. Исправление committed-blob export +7 Python tests добавлено; следующее действие при продолжении — проверить последний GitHub Actions run и сохранить platform scope. Далее native SCM smoke остаётся незавершённой Windows runtime задачей.

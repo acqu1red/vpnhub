@@ -87,7 +87,7 @@ CIDR bypass — строго signed allowlist; DNS/endpoint bootstrap не до�
 
 Одна точка входа: `python3 tools/dev.py doctor|test|fetch-runtime|licenses|check-windows`. Rust toolchain pinned в rust-toolchain.toml, Cargo.lock commit. Runtime manifest: version, official HTTPS URL, SHA-256, source commit, component licenses. Скачивание отделено от исполнения: Windows runtime на Mac не запускается, сеть Mac не меняется.
 
-CI: Linux/macOS core tests + Windows x64 compile/test; минимальные GitHub permissions, action SHA pins, без prod secrets. Windows SCM/TUN test — isolated Windows VM, отдельно от hosted compile. MSI позже, когда source/service/network готовы. Remote repo private; current remote отсутствует. Тестовые fixtures не содержат реальные tokens/private keys, только public test material.
+CI: Linux/macOS core tests + Windows x64 compile/test; минимальные GitHub permissions, action SHA pins, без prod secrets. Windows SCM/TUN test — isolated Windows VM, отдельно от hosted compile. MSI позже, когда source/service/network готовы. Remote repo private: https://github.com/acqu1red/vpnhub.git, публикация разрешена D014. Тестовые fixtures не содержат реальные tokens/private keys, только public test material.
 
 ## 9. Приёмка и критерии выпуска
 

@@ -26,7 +26,7 @@ SDK для MSVC сборки. Подробные команды и отдель�
 - Windows SCM/status pipe, OS caller identity, machine DPAPI primitive.
 - Mock issuer, public Node/Python signing vectors, автоматические проверки.
 - ТЗ, аудит,13 gates/140 подзадач, архитектура/ADR, evidence и handoff.
-- Последние локальные проверки:43 tests PASS; отдельно4 native ARM64 adapter
+- Последние локальные проверки:44 tests PASS; отдельно4 native ARM64 adapter
   tests PASS. Native SCM runner собран, но его runtime ещё не проверен.
 
 Следующий этап — SCM smoke на Windows; далее vault ACL и настоящий TUN на

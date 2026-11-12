@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-13",
+  "run_id": 43299724026,
+  "run_url": "https://github.com/acqu1red/vpnhub/actions/runs/43299724026",
+  "head_sha": "3e5d17eb5555ad4e8e6ca2a0e8182296967808d0",
+  "jobs": {
+    "macos-15": "PASS",
+    "ubuntu-24.04": "PASS",
+    "windows-2025": "FAIL"
+  },
+  "windows_failure": "Python handoff restore fixture compared CRLF worktree against LF clone",
+  "windows_completed_scopes": [
+    "Rust fmt/clippy",
+    "cargo test workspace with native DPAPI tests",
+    "Node signature vectors and 8 HTTP tests",
+    "MSVC-linked offline lab/service CLI"
+  ],
+  "fix": "Committed-blob ZIP export, deterministic fixture newline policy and explicit CRLF regression test",
+  "latest_run": "See GitHub Actions; this is historical evidence of the first run"
+}
