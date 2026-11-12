@@ -5,7 +5,7 @@ SOURCE: аудит, переработка ТЗ и реализация по э�
 | Gate | Проверенный результат | Осталось |
 |---|---|---|
 | G0 | Аудит, ТЗ v2, 5 ADR, 13 gates / 140 подзадач, upstream/license evidence | Последующие product OPEN решения |
-| G1 | Rust workspace/toolchain/lock, local CLI, CI config, license inventory | GitHub workflow ещё не запускался, remote отсутствует |
+| G1 | Rust workspace/toolchain/lock, local CLI, CI config, license inventory | CI config; публикация в PRIVATE acqu1red/vpnhub разрешена D014, actual CI status смотреть в GitHub |
 | G3 | Ed25519 exact-byte verification, binding/lease/version/digest; Node34 + Python1 public vectors; Python↔Rust interop | Согласование с владельцем issuer; durable rollback floor |
 | G2 | SCM lifecycle, local pipe/DACL, настоящий token SID/session adapter, pure authorization, status-only protocol; ARM64 console transport test PASS | SCM tests, adversarial identities; server authenticity до auth IPC |
 | G4 | Loopback mock OTP/enrollment/bundle/policy/revoke; 8 HTTP tests | Production HTTP adapter, durable server behaviour |
@@ -15,7 +15,7 @@ SOURCE: аудит, переработка ТЗ и реализация по э�
 
 ## VERIFIED local
 
-macOS arm64, Rust1.99.1 изолированно в .tools; Node24.11.0, Python3.9.6. Shell profile не менялся. Локальные commits, без публикации.
+macOS arm64, Rust1.99.1 изолированно в .tools; Node24.11.0, Python3.9.6. Shell profile не менялся. Git-история сохраняется; пользователь поручил публикацию в PRIVATE https://github.com/acqu1red/vpnhub.git (D014).
 
 - `python3 tools/dev.py test`: PASS — fmt/clippy, **29 Rust tests +8 Node HTTP +6 Python tools =43**. Node34 public vectors проверяются отдельно; Rust дополнительно принимает Python fixture, отвергает его повторную сериализацию без новой подписи.
 - Optional PyCA50.0.2 reference проверил **35 public vectors**. Private test keys существуют только в памяти генераторов, в fixtures только public material. Четыре Mac wheels сверены с official PyPI hashes; это local dev tool, не production issuer.
@@ -49,3 +49,8 @@ Production issuer/Xray/employees и сеть хостового Mac не изм�
 SOURCE13.11.2026: весь код, документация и контекст сохраняются внутри проекта для переноса. CONTINUE_HERE.md — entry point, docs/SESSION_HANDOFF.md — точка продолжения, docs/WINDOWS_DEVELOPMENT.md — prerequisites/restore/build/run. `tools/dev.py export-handoff` создаёт private ZIP committed source/evidence + Git history bundle + SHA256. Два automated tests проверяют реальное восстановление истории и отказ при uncommitted работе. Generated Mac caches/tools/VM/secrets не входят; важные evidence находятся в docs/evidence.
 
 Попытка service-smoke.ps1 была **BLOCKED до исполнения**: ExecutionPolicy / running scripts is disabled (пользователь передал точную ошибку). Служба этим тестом не создавалась. Написан отдельный native SCM lab EXE без PowerShell, без auto-elevation и изменения policies. Использует проверенный windows-service, новый fixed protected directory, pinned service hash, bounded start/stop, cleanup и проверку удаления SCM до PASS. ARM64 EXE собран на Mac; runtime нового runner **NOT_RUN**. Windows MSVC builder подготовлен; actual linking на чистой Windows ещё не проводилось. Новый payload/ISO с суффиксом -SCM не подменяет старое runtime evidence4/4 из e772fd8.
+
+
+## GitHub publication — D014
+
+Пользователь13.11.2026 поручил commit/push в acqu1red/vpnhub. GitHub API подтвердил PRIVATE, пустой repository и push/admin access перед первым push. Публикуется существующая Git-история из vpn/ScrumeVPN с source/docs/evidence/CI; внешний vpn/SPEC.md добавлен как SPEC.md, байты равны SPEC_ORIGINAL.md. README.md и Windows clone instructions добавлены. Caches, VM, passwords и generated build/handoff archives в Git не включены; локальный handoff остаётся в artifacts/handoff. Проверка known credential patterns в131 tracked files и241 historical objects не нашла совпадений. Итоговый remote HEAD/CI проверяются после push; до этого не заявлять CI PASS. Production VPN/server deployment не выполняется.

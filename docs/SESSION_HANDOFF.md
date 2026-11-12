@@ -4,6 +4,13 @@ SOURCE: пользователь просит попутно сохранять 
 чтобы в будущем продолжить напрямую на Windows без потери истории и решений.
 Начать с CONTINUE_HERE.md. Текущие факты — STATUS.md, а не предположения в старом SPEC.
 
+SOURCE D014: пользователь поручил публикацию в **https://github.com/acqu1red/vpnhub.git**.
+Это основной PRIVATE remote, GitHub API подтвердил push access и пустой repository
+перед первым push. На Windows клонировать его и продолжать из repo root; отдельный
+Git bundle остаётся offline backup. Корень remote соответствует `vpn/ScrumeVPN`,
+внешний `vpn/SPEC.md` также скопирован в корень как SPEC.md. Свежий remote HEAD и
+GitHub Actions проверять на GitHub; исторические отчёты не превращать в CI PASS.
+
 ## Что делаем сейчас
 
 G2: проверяем реальную SYSTEM-службу и IPC до TUN/GUI/MSI. Пользователь выполнил
@@ -94,8 +101,9 @@ VM encryption password и Windows password задавал пользовател
 
 Существующий issuer source, staging endpoints и server change authorization не
 предоставлены. Legacy production данные из SPEC не являются разрешением на тест.
-Нет private remote проекта или code-signing сертификата. GitHub upstream открыты
-и доступны без авторизации. Публикацию private проекта пользователь не поручал.
+Code-signing сертификат не предоставлен. GitHub upstream открыты и доступны без
+авторизации. Private remote проекта разрешён D014; production deployment по-прежнему
+не поручен.
 
 ## Где искать подробности
 

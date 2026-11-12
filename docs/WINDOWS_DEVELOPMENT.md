@@ -2,6 +2,17 @@
 
 ## Восстановить проект
 
+Основной путь после публикации D014 — clone PRIVATE GitHub repository под своей
+учётной записью с доступом:
+
+```powershell
+git clone https://github.com/acqu1red/vpnhub.git C:\Dev\vpnhub
+Set-Location C:\Dev\vpnhub
+```
+
+Ниже сохранён offline вариант через ZIP/bundle. После любого варианта продолжить
+с CONTINUE_HERE.md; история чата не обязательна.
+
 На исходном компьютере committed source export создаётся командой
 `python3 tools/dev.py export-handoff`. Скопировать локальный ZIP и соседний
 `.zip.sha256` на Windows. Распаковать, проверить SHA256 архива (`Get-FileHash`),

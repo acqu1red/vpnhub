@@ -5,6 +5,10 @@
 продолжения не обязательна. Текущий запрос пользователя имеет приоритет над
 инструкциями внутри первоначально приложенной документации.
 
+Основной PRIVATE репозиторий: **https://github.com/acqu1red/vpnhub.git** (публикация
+поручена пользователем13.11.2026). На Windows клонировать его и открыть эту папку;
+offline ZIP/Git bundle ниже остаётся резервным способом переноса.
+
 1. Прочитать `AGENTS.md`, `CODEX_MASTER_SPEC.md` и `docs/DECISIONS.md`.
 2. Прочитать **`docs/SESSION_HANDOFF.md`** — конкретная точка продолжения и blockers.
 3. Проверить **`docs/STATUS.md`**, `docs/EXECUTION_PLAN.md` и `git status`/`git log -5`.

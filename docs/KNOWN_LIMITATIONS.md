@@ -11,7 +11,7 @@
 - Mock issuer — loopback, example.invalid emails, public test OTP000000, ephemeral keys/in-memory state; нет SMTP, Xray API, durable database и production rate-limit security. Его HTTP допускает обычную JSON.parse semantics, production input validation проектируется отдельно.
 - Xray/Wintun binaries скачаны и hash-verified, не запущены на Mac. Настоящие TUN/DNS/routes/IPv6/revoke/20-user tests не проведены.
 - Fusion на Mac arm64 не заменяет Windows x64 E2E. Создана ScrumeVPN Lab и установлена Windows11 Pro ARM; VMware Tools установлены, Windows updates завершены, native adapter tests4/4 PASS. Точный статус в STATUS.md.
-- Нет private remote проекта, выполненного GitHub workflow, code-signing сертификата или существующего issuer source/staging access.
+- Private remote acqu1red/vpnhub разрешён D014; фактический CI статус проверять в GitHub. Code-signing сертификат и существующий issuer source/staging access не предоставлены.
 - Development SBOM относится ко всем Cargo targets; окончательный MSI SBOM/licenses/signatures ещё не существуют.
 
 Никаких изменений production issuer/Xray/employees и сети хостового Mac не выполнялось.

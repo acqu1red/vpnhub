@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-13",
+  "destination": "https://github.com/acqu1red/vpnhub.git",
+  "visibility_verified": "PRIVATE",
+  "initial_repository_state": "EMPTY",
+  "authorization": "User explicitly requested commit/push of project folder to this repository",
+  "scan_scope": "131 tracked files and 241 historical objects; plus external SPEC.md",
+  "checks": "Known PEM private key, GitHub credential, sk-/at-/as- credential, AWS access key and JWT patterns",
+  "matches": 0,
+  "limitations": "Pattern-based review, not a guarantee of absence of all secret formats",
+  "original_spec_sha256": "9870a36f66679e6724453e2358e493a5cc8ac851902c42b72fbb30bac06c6455",
+  "generated_files_excluded": [
+    ".tools",
+    ".cache",
+    "target",
+    "artifacts",
+    "VM images",
+    "credentials"
+  ]
+}
