@@ -320,7 +320,19 @@ dependencies = [
 name = "scrume-service"
 version = "0.1.0"
 dependencies = [
+ "scrume-core",
+ "scrume-windows",
+ "serde_json",
  "windows-service",
+]
+
+[[package]]
+name = "scrume-windows"
+version = "0.1.0"
+dependencies = [
+ "scrume-core",
+ "windows-sys",
+ "zeroize",
 ]
 
 [[package]]

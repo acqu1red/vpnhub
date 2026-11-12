@@ -1,0 +1,17 @@
+{
+  "status": "BUILT_NOT_EXECUTED",
+  "target": "aarch64-pc-windows-gnullvm",
+  "signing": "UNSIGNED_LAB_ONLY",
+  "toolchain": "Rust 1.99.1 + Zig 0.15.2",
+  "zig_archive_sha256": "3cc2bab367e185cdfb27501c4b30b1b0653c28d9f73df8dc91488e66ece5fa6b",
+  "files": {
+    "LLVM-UNWIND-LICENSE.txt": "b5efebcaca80879234098e52d1725e6d9eb8fb96a19fce625d39184b705f7b6d",
+    "MINGW-COPYING.txt": "99a69660981156c21336fdb5661f89341b013c94e4bf9e1c7467b4745718397f",
+    "READ-ME.txt": "4ca18a8027fee3db4c34dfaab216e888ac2bbc6f037886eda49f9157fca55721",
+    "ScrumeVPNSvc.exe": "481e0a8f5d012651bc888a640fa8681b439565302dd844aa28238c252b482999",
+    "THIRD_PARTY_NOTICES.txt": "e494e5b3e977540f32f902714ec28ac793a91b734de219b9fb381e52b5f4a0d7",
+    "ZIG-LICENSE.txt": "5c537d6853e005298a285d508cff9ac7192cea23576c840d485b2b586a7ff177",
+    "service-smoke.ps1": "b13cd491307fd3e07a5fcf59911c0764918311be3137339bc42a88d7da4fb87e",
+    "windows-adapter-tests.exe": "b245114808d72b838791ebc9845ff3233c61ad288cf47e6d17b0165457b5b440"
+  }
+}

@@ -1,4 +1,13 @@
-use std::{ffi::OsString, sync::mpsc, time::Duration};
+use scrume_windows::pipe::Server;
+use std::{
+    ffi::OsString,
+    sync::{
+        Arc,
+        atomic::{AtomicBool, Ordering},
+    },
+    thread,
+    time::Duration,
+};
 use windows_service::{
     define_windows_service,
     service::{
@@ -35,18 +44,18 @@ fn status(state: ServiceState, accepted: ServiceControlAccept) -> ServiceStatus 
 }
 
 fn service_main(_args: Vec<OsString>) {
-    // No child, filesystem, network or IPC operations until secure adapters exist.
-    // Running here describes SCM availability only, never VPN connectivity.
+    // Running describes SCM/status IPC availability, never VPN connectivity.
     if run().is_err() {
         eprintln!("SERVICE_LIFECYCLE_FAILED");
     }
 }
 
 fn run() -> windows_service::Result<()> {
-    let (stop_tx, stop_rx) = mpsc::channel();
+    let cancelled = Arc::new(AtomicBool::new(false));
+    let stop = Arc::clone(&cancelled);
     let handle = service_control_handler::register(NAME, move |control| match control {
         ServiceControl::Stop | ServiceControl::Shutdown => {
-            let _ = stop_tx.send(());
+            stop.store(true, Ordering::Release);
             ServiceControlHandlerResult::NoError
         }
         ServiceControl::Interrogate => ServiceControlHandlerResult::NoError,
@@ -56,15 +65,39 @@ fn run() -> windows_service::Result<()> {
         ServiceState::StartPending,
         ServiceControlAccept::empty(),
     ))?;
+    let server = match Server::create() {
+        Ok(server) => server,
+        Err(error) => {
+            let mut failed = status(ServiceState::Stopped, ServiceControlAccept::empty());
+            failed.exit_code = ServiceExitCode::ServiceSpecific(1);
+            handle.set_service_status(failed)?;
+            return Err(windows_service::Error::Winapi(error));
+        }
+    };
     handle.set_service_status(status(
         ServiceState::Running,
         ServiceControlAccept::STOP | ServiceControlAccept::SHUTDOWN,
     ))?;
-    let _ = stop_rx.recv();
+    let result = loop {
+        if cancelled.load(Ordering::Acquire) {
+            break Ok(());
+        }
+        if let Err(error) = server.poll(scrume_service::protocol::handle, || {
+            cancelled.load(Ordering::Acquire)
+        }) {
+            break Err(error);
+        }
+        thread::sleep(Duration::from_millis(25));
+    };
     handle.set_service_status(status(
         ServiceState::StopPending,
         ServiceControlAccept::empty(),
     ))?;
-    handle.set_service_status(status(ServiceState::Stopped, ServiceControlAccept::empty()))?;
-    Ok(())
+    drop(server);
+    let mut stopped = status(ServiceState::Stopped, ServiceControlAccept::empty());
+    if result.is_err() {
+        stopped.exit_code = ServiceExitCode::ServiceSpecific(1);
+    }
+    handle.set_service_status(stopped)?;
+    result.map_err(windows_service::Error::Winapi)
 }

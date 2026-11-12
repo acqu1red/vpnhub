@@ -9,8 +9,13 @@ publish.workspace = true
 name = "ScrumeVPNSvc"
 path = "src/main.rs"
 
+[dependencies]
+scrume-core = { path = "../../crates/scrume-core" }
+serde_json.workspace = true
+
 [target.'cfg(windows)'.dependencies]
 windows-service.workspace = true
+scrume-windows = { path = "../../crates/scrume-windows" }
 
 [lints]
 workspace = true

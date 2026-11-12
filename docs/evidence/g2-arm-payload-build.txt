@@ -1,0 +1,9 @@
+info: component rust-std for target aarch64-pc-windows-gnullvm is up to date
+warning: linker stderr: ignoring deprecated linker optimization setting '1'
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: `scrume-service` (bin "ScrumeVPNSvc") generated 1 warning
+    Finished `release` profile [optimized] target(s) in 0.09s
+    Finished `release` profile [optimized] target(s) in 0.02s
+ARM64 lab payload built; native Windows tests have NOT been executed

@@ -1,12 +1,25 @@
-//! SCM lifecycle scaffold. Does not expose IPC or claim a working VPN.
+//! SCM lifecycle and read-only status IPC. Does not claim a working VPN.
 #[cfg(windows)]
 mod scm;
 
 fn main() -> std::process::ExitCode {
     let args: Vec<String> = std::env::args().skip(1).collect();
     if args == ["--capabilities"] {
-        println!("SCM_SCAFFOLD; IPC=NOT_IMPLEMENTED; VAULT=NOT_IMPLEMENTED; TUN=NOT_IMPLEMENTED");
+        println!("SCM; IPC=STATUS_ONLY_UNVERIFIED; VAULT=NOT_IMPLEMENTED; TUN=NOT_IMPLEMENTED");
         return std::process::ExitCode::SUCCESS;
+    }
+    #[cfg(windows)]
+    if args == ["--status"] {
+        return match scrume_windows::pipe::status() {
+            Ok(bytes) => {
+                println!("{}", String::from_utf8_lossy(&bytes));
+                std::process::ExitCode::SUCCESS
+            }
+            Err(_) => {
+                eprintln!("IPC_UNAVAILABLE");
+                std::process::ExitCode::FAILURE
+            }
+        };
     }
     if !args.is_empty() {
         eprintln!("UNSUPPORTED_ARGUMENTS");

@@ -10,7 +10,7 @@
       },
       {
         "name": "scrumevpn:cargo-lock-sha256",
-        "value": "e37ff29a0bb12ec0c151998febb3fe6bcf6b979d6ab06da33d5ae9c8e6146f5d"
+        "value": "bc7c06489e62a26814ed6d000abe0f8661e639ca43ada6b2ceeea31ef39ac7bd"
       }
     ]
   },
@@ -872,6 +872,12 @@
       "bom-ref": "pkg:cargo/scrume-service@0.1.0",
       "name": "scrume-service",
       "version": "0.1.0"
+    },
+    {
+      "type": "application",
+      "bom-ref": "pkg:cargo/scrume-windows@0.1.0",
+      "name": "scrume-windows",
+      "version": "0.1.0"
     }
   ],
   "dependencies": [
@@ -1103,7 +1109,18 @@
     {
       "ref": "pkg:cargo/scrume-service@0.1.0",
       "dependsOn": [
+        "pkg:cargo/scrume-core@0.1.0",
+        "pkg:cargo/scrume-windows@0.1.0",
+        "pkg:cargo/serde_json@1.0.145",
         "pkg:cargo/windows-service@0.8.0"
+      ]
+    },
+    {
+      "ref": "pkg:cargo/scrume-windows@0.1.0",
+      "dependsOn": [
+        "pkg:cargo/scrume-core@0.1.0",
+        "pkg:cargo/windows-sys@0.59.0",
+        "pkg:cargo/zeroize@1.9.1"
       ]
     },
     {
