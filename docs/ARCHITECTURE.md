@@ -31,7 +31,8 @@ flowchart TB
 | Слой | Назначение | Приёмка |
 |---|---|---|
 | crates/scrume-core | signed envelope, typed bundle, validation, state, bounded IPC parser | macOS unit/contract tests |
-| apps/service | SCM lifecycle; сейчас scaffold, без подключения | Windows compile отдельно от SCM E2E |
+| apps/service | SCM lifecycle + status-only pipe, без подключения | Windows compile отдельно от SCM E2E |
+| crates/scrume-windows | Native pipe/token identity и machine DPAPI primitive; file vault позже | Native Windows tests отдельно от cross-check |
 | apps/lab | offline vector verification и диагностика, без сети | deterministic tests |
 | tools | doctor, test, verified runtime fetch, SBOM/license inventory | one-command local automation |
 | apps/desktop | Tauri shell / tray / user lifecycle, будущий этап | UI + Windows integration |

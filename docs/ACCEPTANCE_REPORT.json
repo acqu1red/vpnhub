@@ -1,8 +1,8 @@
 {
-  "date": "2026-11-12",
+  "date": "2026-11-13",
   "platform": "macOS arm64; Rust 1.99.1; Node 24.11.0; Python 3.9.6",
   "scope": "local development only; Windows E2E not performed",
-  "source_sha256": "0469c70498a8b93fb87561984f69f3125b6bbfed9998b8eb27a5c392af8298a9",
+  "source_sha256": "65f6686a9b947b4b6775ad2f5d7cf7d3c7b8c10f6ab6c6c9d85262941baa262f",
   "tests": [
     {
       "id": "A01",
@@ -96,9 +96,15 @@
     },
     {
       "id": "A16",
-      "status": "NOT_RUN",
-      "evidence": [],
-      "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
+      "status": "PASS",
+      "evidence": [
+        "tests/fixtures/signing-python-v1.json",
+        "tools/issuer_signing_reference.py",
+        "crates/scrume-core/tests/security.rs",
+        "docs/evidence/g3-python-checks.txt",
+        "docs/evidence/g3-python-reference.txt"
+      ],
+      "notes": "macOS unit scope: Python exact-byte signed payload accepted by Rust; reserialization rejected. Native Windows and production issuer not tested."
     },
     {
       "id": "A17",
@@ -372,5 +378,6 @@
       "evidence": [],
       "notes": "Full acceptance scenario not executed; see TRACEABILITY for partial unit/mock evidence."
     }
-  ]
+  ],
+  "source_manifest": "docs/evidence/source-manifest.json"
 }

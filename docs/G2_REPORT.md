@@ -11,3 +11,6 @@
 Безопасность: mutation fail closed, source of identity — Windows token, server не выполняет raw commands, status не содержит SID/token/profile. Перед auth IPC обязательно server authenticity, owner bootstrap и protected storage. RDP/fast switching ограничены, см. ADR0005.
 
 Следующий шаг: Windows guest + build → SCM/status smoke → исправления по actual evidence → identity/security tests. Реальный TUN POC G5 остаётся до GUI/MSI; нужны approved staging и отдельная x64 приёмка.
+
+
+Дополнение 13.11.2026: status client получил bounded retry только при ERROR_PIPE_BUSY; in/out buffers явно ограничены. Подготовлен opt-in native pipe test (реальная OS identity, duplicate listener, oversize, reconnect, idle stop), который запускается launcher вместе с3 DPAPI tests. Обычный hosted CI пропускает console-only test. SCM smoke теперь использует bounded ServiceController wait и выводит PASS после подтверждённого удаления своей SCM записи. Native выполнение этих дополнений пока NOT_RUN. Evidence followup checks/build — отдельные файлы g2-followup-*.txt.

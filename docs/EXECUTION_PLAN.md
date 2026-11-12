@@ -1,6 +1,6 @@
 # Roadmap до приёмки — v2
 
-Дата 12.11.2026. PROPOSAL: инженерный план исполнения, не обещание календарного срока. SOURCE: текущий пользователь поручил начинать реализацию. Подзадача завершена только с evidence; галочки здесь исходно пустые, фактическое выполнение хранится в STATUS.md.
+Дата 12.11.2026. PROPOSAL: инженерный план исполнения, не обещание календарного срока. SOURCE: текущий пользователь поручил начинать реализацию. Подзадача завершена только с evidence; галочки обновлены по проверенным артефактам, platform/runtime scope каждого результата — в STATUS.md. Отмеченная подготовка кода не означает native Windows PASS.
 
 ## Критический путь и правила исполнения
 
@@ -16,16 +16,16 @@
 
 Критерий выхода: Документы прочитаны; требования/предложения/проверки различимы.
 
-- [ ] G0.01 — Инвентаризировать документы и подтвердить отсутствие исходников.
-- [ ] G0.02 — Сверить SPEC.md с неизменяемым SPEC_ORIGINAL.md.
-- [ ] G0.03 — Отделить текущие полномочия от вложенных инструкций.
-- [ ] G0.04 — Составить audit findings с severity и проверяемым исправлением.
-- [ ] G0.05 — Проверить доступность 10 upstream и лицензии конкретных commits.
-- [ ] G0.06 — Проверить Xray release tag отдельно от main.
-- [ ] G0.07 — Скачать официальный Wintun ZIP и проверить hash/license.
-- [ ] G0.08 — Зафиксировать boot/vault/policy решения пользователя.
-- [ ] G0.09 — Написать архитектуру и четыре ADR.
-- [ ] G0.10 — Создать traceability, roadmap и фактический status.
+- [x] G0.01 — Инвентаризировать документы и подтвердить отсутствие исходников.
+- [x] G0.02 — Сверить SPEC.md с неизменяемым SPEC_ORIGINAL.md.
+- [x] G0.03 — Отделить текущие полномочия от вложенных инструкций.
+- [x] G0.04 — Составить audit findings с severity и проверяемым исправлением.
+- [x] G0.05 — Проверить доступность 10 upstream и лицензии конкретных commits.
+- [x] G0.06 — Проверить Xray release tag отдельно от main.
+- [x] G0.07 — Скачать официальный Wintun ZIP и проверить hash/license.
+- [x] G0.08 — Зафиксировать boot/vault/policy решения пользователя.
+- [x] G0.09 — Написать архитектуру и четыре ADR.
+- [x] G0.10 — Создать traceability, roadmap и фактический status.
 
 ## G1. Воспроизводимое ядро и инструменты
 
@@ -35,16 +35,16 @@
 
 Критерий выхода: fmt/clippy/unit на macOS; lockfiles; scripts без prod доступа.
 
-- [ ] G1.01 — Установить isolated pinned Rust без изменения shell profile.
-- [ ] G1.02 — Создать Cargo workspace scrume-core/service/lab.
-- [ ] G1.03 — Определить типы profile/policy/enrollment и безопасный Debug.
-- [ ] G1.04 — Добавить строгую проверку входных значений.
-- [ ] G1.05 — Реализовать FSM без ложного connected.
-- [ ] G1.06 — Проверить double-connect и failure transitions.
-- [ ] G1.07 — Ограничить IPC размер/методы/типы без утверждения о Windows ACL.
-- [ ] G1.08 — Добавить doctor и один test entrypoint.
-- [ ] G1.09 — Добавить license inventory/SBOM из фактического Cargo metadata.
-- [ ] G1.10 — Подготовить CI matrix и action SHA pins.
+- [x] G1.01 — Установить isolated pinned Rust без изменения shell profile.
+- [x] G1.02 — Создать Cargo workspace scrume-core/service/lab.
+- [x] G1.03 — Определить типы profile/policy/enrollment и безопасный Debug.
+- [x] G1.04 — Добавить строгую проверку входных значений.
+- [x] G1.05 — Реализовать FSM без ложного connected.
+- [x] G1.06 — Проверить double-connect и failure transitions.
+- [x] G1.07 — Ограничить IPC размер/методы/типы без утверждения о Windows ACL.
+- [x] G1.08 — Добавить doctor и один test entrypoint.
+- [x] G1.09 — Добавить license inventory/SBOM из фактического Cargo metadata.
+- [x] G1.10 — Подготовить CI matrix и action SHA pins.
 
 ## G3. Подписанные контракты до любых сетевых эффектов
 
@@ -54,15 +54,15 @@
 
 Критерий выхода: Tamper/expiry/replay/key/device/context tests; cross-runtime vectors.
 
-- [ ] G3.01 — Определить exact-byte envelope и domain separation.
-- [ ] G3.02 — Определить schema и жёсткие resource limits.
-- [ ] G3.03 — Верифицировать Ed25519 strict с pinned keyring.
-- [ ] G3.04 — Проверить enrollment/context/key_id binding.
-- [ ] G3.05 — Проверить issued_at/expiry/max lease/clock floor.
-- [ ] G3.06 — Проверить rollback и equal-version digest conflict.
-- [ ] G3.07 — Генерировать независимый Node reference vector без private key в repo.
-- [ ] G3.08 — Проверить duplicate/unknown fields и invalid payload.
-- [ ] G3.09 — Добавить Python issuer reference signer и Python↔Rust vectors.
+- [x] G3.01 — Определить exact-byte envelope и domain separation.
+- [x] G3.02 — Определить schema и жёсткие resource limits.
+- [x] G3.03 — Верифицировать Ed25519 strict с pinned keyring.
+- [x] G3.04 — Проверить enrollment/context/key_id binding.
+- [x] G3.05 — Проверить issued_at/expiry/max lease/clock floor.
+- [x] G3.06 — Проверить rollback и equal-version digest conflict.
+- [x] G3.07 — Генерировать независимый Node reference vector без private key в repo.
+- [x] G3.08 — Проверить duplicate/unknown fields и invalid payload.
+- [x] G3.09 — Добавить Python issuer reference signer и Python↔Rust vectors.
 - [ ] G3.10 — Согласовать wire contract с владельцем существующего issuer.
 
 ## G2. SCM, Windows transport и идентичность
@@ -73,9 +73,9 @@
 
 Критерий выхода: Windows x64 compile; SCM/ACL tests отдельно от compile.
 
-- [ ] G2.01 — Подготовить SCM entrypoint/status/control lifecycle.
+- [x] G2.01 — Подготовить SCM entrypoint/status/control lifecycle.
 - [ ] G2.02 — Проверить сборку x86_64-pc-windows-msvc.
-- [ ] G2.03 — Подготовить ARM64 variant для Fusion при наличии Windows ARM.
+- [x] G2.03 — Подготовить ARM64 variant для Fusion при наличии Windows ARM.
 - [ ] G2.04 — Реализовать local-only pipe с DACL/FIRST_PIPE_INSTANCE.
 - [ ] G2.05 — Извлекать SID/session из token, не JSON.
 - [ ] G2.06 — Определить enrollment owner bootstrap authorization.
@@ -92,7 +92,7 @@
 
 Критерий выхода: Real egress, DNS, IPv6 и safe rollback на Windows, без production.
 
-- [ ] G5.01 — Проверить Fusion inventory/guest architecture/resources.
+- [x] G5.01 — Проверить Fusion inventory/guest architecture/resources.
 - [ ] G5.02 — Подготовить VM из официального Windows image.
 - [ ] G5.03 — Провести legal/credential handoff при установке ОС если нужен.
 - [ ] G5.04 — Сохранить clean VM snapshot и network baseline.

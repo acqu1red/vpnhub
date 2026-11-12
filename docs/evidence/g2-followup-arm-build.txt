@@ -1,0 +1,4 @@
+info: component rust-std for target aarch64-pc-windows-gnullvm is up to date
+    Finished `release` profile [optimized] target(s) in 1.04s
+    Finished `release` profile [optimized] target(s) in 0.16s
+ARM64 lab payload built; native Windows tests have NOT been executed

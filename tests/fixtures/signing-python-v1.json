@@ -1,0 +1,19 @@
+{
+  "description": "PUBLIC TEST DATA ONLY; Python/OpenSSL signature, no private key saved",
+  "generator": "cryptography==50.0.2",
+  "key_id": "python-reference-only-1",
+  "public_key": "mpCLHmn-pEsX2YVuP3PDzZPYUFtl07nyj-q-Z35Ijow",
+  "enrollment_id": "4c5acb88-49fc-4c98-9c56-22818442bfbb",
+  "now": 1805000000,
+  "cases": [
+    {
+      "name": "valid",
+      "expected": "ok",
+      "envelope": {
+        "key_id": "python-reference-only-1",
+        "payload": "ewogImNvbnRleHQiOiAic2NydW1ldnBuL2J1bmRsZS92MSIsCiAiZW5yb2xsbWVudF9pZCI6ICI0YzVhY2I4OC00OWZjLTRjOTgtOWM1Ni0yMjgxODQ0MmJmYmIiLAogImV4cGlyZXNfYXQiOiAxODA1MDAzNjAwLAogImlzc3VlZF9hdCI6IDE4MDQ5OTk5NDAsCiAia2V5X2lkIjogInB5dGhvbi1yZWZlcmVuY2Utb25seS0xIiwKICJwb2xpY3kiOiB7CiAgImF1dG9fY29ubmVjdCI6IHRydWUsCiAgImtpbGxfc3dpdGNoIjogZmFsc2UsCiAgInJlZnJlc2hfaW50ZXJ2YWxfc2Vjb25kcyI6IDIxNjAwCiB9LAogInByb2ZpbGUiOiB7CiAgImRucyI6IFsKICAgIjEuMS4xLjEiLAogICAiMjYwNjo0NzAwOjQ3MDA6OjExMTEiCiAgXSwKICAiZXhjbHVkZV9jaWRycyI6IFsKICAgIjE5Mi4wLjIuMC8yNCIKICBdLAogICJleGNsdWRlX2RvbWFpbnMiOiBbXSwKICAiZmluZ2VycHJpbnQiOiAiY2hyb21lIiwKICAibXR1IjogMTQwMCwKICAicG9ydCI6IDg0NDMsCiAgInB1YmxpY19rZXkiOiAiRVJFUkVSRVJFUkVSRVJFUkVSRVJFUkVSRVJFUkVSRVJFUkVSRVJFUkVSRSIsCiAgInNlcnZlciI6ICJ2cG4uZXhhbXBsZS5pbnZhbGlkIiwKICAic2hvcnRfaWQiOiAiYWFiYmNjZGQiLAogICJzbmkiOiAicmVhbGl0eS5leGFtcGxlLmludmFsaWQiLAogICJ1dWlkIjogIjgzNmRlMjJlLWFkYmMtNGY1Ni04M2MxLWU5OGE4MTY0OTM0NSIKIH0sCiAic2NoZW1hX3ZlcnNpb24iOiAxLAogInZlcnNpb24iOiA3Cn0",
+        "signature": "nar3rDJAPZE1FZy_12cVW14f4WG4R8Lrf_8DjQ9-oA-097E2SY20HX8qYCRnSjADegHlah4QBvyxp54JaYD-Dg"
+      }
+    }
+  ]
+}

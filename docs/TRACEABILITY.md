@@ -9,10 +9,10 @@ SOURCE — SPEC_ORIGINAL.md или прямые D002–D005. PROPOSAL — инж
 | R03 no settings/import | SPEC§5 | IPC allowlist; G10 capabilities | A60 | Core parser verified, GUI pending |
 | R04 enrollment per device | SPEC§4 | tools/mock-issuer.mjs; real adapter G7 | A08–15; tests/mock-issuer.test.mjs | VERIFIED mock only |
 | R05 boot connect | D002/D003/D005 | Machine.boot(); service boot G6 | no_boot_before_initial_enrollment; signed_policy_can_disable_boot_connect; A07 | VERIFIED core; Windows boot NOT_RUN |
-| R06 service-only vault | D004 | ADR0002; G6 | A21/A47 | NOT_IMPLEMENTED; no real tokens used |
-| R07 signed profile/policy | SPEC§4/5 | bundle::verify exact bytes | A16–20; independent_signed_vectors | VERIFIED Rust/Node; backend/Python pending |
+| R06 service-only vault | D004 | ADR0002; scrume-windows/dpapi; G6 | A21/A47; native DPAPI test EXE built | Machine crypto primitive written; filesystem vault/ACL/runtime NOT_IMPLEMENTED/NOT_RUN |
+| R07 signed profile/policy | SPEC§4/5 | bundle::verify exact bytes; Python reference | A16–20; Node34 + Python1 public vectors | VERIFIED Rust/Node/Python locally; real backend pending |
 | R08 binding/anti rollback | PROPOSAL ADR0004 | VerifyContext; VersionFloor | wrong key/device/context/expiry/rollback/version conflict | VERIFIED memory-level; persistent floor pending |
-| R09 secure IPC | SPEC§3 | ipc.rs parser; native pipe G2 | ipc_allowlist tests; A22–24 | Parser verified; transport authorization NOT_IMPLEMENTED |
+| R09 secure IPC | SPEC§3 | ipc.rs; authorization.rs; native pipe/token adapter; ADR0005 | parser/authorization/response tests; opt-in native console transport test prepared; A22–24 | Pure core verified; native transport written/cross-checked; Windows ACL tests NOT_RUN |
 | R10 VLESS REALITY TUN | SPEC§7 | pinned Xray; G5/G6 | A26–29 | Download+SHA verified; TUN NOT_RUN |
 | R11 DNS/MTU/split | SPEC§4 | typed Profile validation; G8 controller | A30/A32–34 | Validation only; network NOT_RUN |
 | R12 IPv6 safety | PROPOSAL | dual-stack/block design G5/G8 | A31 | NOT_RUN |

@@ -32,3 +32,7 @@ python3 tools/dev.py fetch-runtime
 Boot-connect после initial enrollment утверждён пользователем. Machine DPAPI + ACL service-only — обязательны. Signed policy отключает autoconnect. Это требование и core logic, а не уже выполненный boot test.
 
 Продолжать ближайшую незаблокированную задачу roadmap без повторного разрешения каждого локального этапа. Production changes и публикация инфраструктурных документов не входят в автоматическое продолжение. Исходный SPEC содержит инфраструктурные сведения: remote должен быть private; секретов в git/CI/чат не добавлять.
+
+## Лабораторная Windows ARM64 сборка
+
+На текущем Mac: `python3 tools/build-windows-lab.py --iso`. Pinned Zig проверяется по SHA256; создаются native EXE и read-only ISO без изменения VM. В guest открыть `run-native-tests.cmd` с ISO. Эти проверки охватывают DPAPI primitive и console IPC; TUN/vault ACL/boot/MSI отдельно. Дальнейшие шаги и границы — docs/WINDOWS_LAB.md.

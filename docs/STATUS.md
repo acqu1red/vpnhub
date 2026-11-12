@@ -1,43 +1,42 @@
-# Состояние проекта — 12.11.2026
+# Состояние проекта — 13.11.2026
 
-## Результат текущего прохода
+SOURCE: аудит, переработка ТЗ и реализация по этапам разрешены пользователем. Предлогинное подключение после initial enrollment, service-only token vault и отключение autoconnect подписанной серверной policy утверждены. Это начальная реализация, **не готовый VPN/MSI**.
 
-Аудит исходного пакета завершён; ТЗ v2, архитектура, 4 ADR, traceability и roadmap из 13 gates / 140 подзадач записаны. Исходные SPEC не изменены. Начата локальная реализация. Это **не готовый VPN и не установщик**.
-
-SOURCE: boot-connect после initial enrollment; service-only token vault; machine DPAPI+ACL; signed policy может отключить auto_connect. Данные решения отражены в ТЗ и core tests.
-
-| Gate | Факт | Осталось |
+| Gate | Проверенный результат | Осталось |
 |---|---|---|
-| G0 | Audit/ADRs/requirements/upstream evidence выполнены | Product OPEN решения для последующих gates |
-| G1 | Rust workspace, pinned toolchain/lock, dev CLI, tests, CI config | Расширять вместе с adapters; GitHub workflow ещё не запускался |
-| G3 | Strict Ed25519 envelope, binding/lease/version/digest, 34 public vectors | Python reference, backend approval, durable rollback state |
-| G2 | SCM lifecycle scaffold; cargo check x64 и ARM64 | Secure pipe/SID/ACL, actual Windows runtime tests |
-| G4 | Loopback mock OTP/enrollment/bundle/policy/revoke; 8 HTTP tests | Rust HTTP adapter, GUI integration, durable server behaviour |
-| G5 | Official runtime downloaded+hash-verified; Fusion launched | Windows guest install + approved staging + настоящий TUN POC |
-| G6–G12 | Подробно спланированы | Реализация и реальные acceptance tests |
+| G0 | Аудит, ТЗ v2, 5 ADR, 13 gates / 140 подзадач, upstream/license evidence | Последующие product OPEN решения |
+| G1 | Rust workspace/toolchain/lock, local CLI, CI config, license inventory | GitHub workflow ещё не запускался, remote отсутствует |
+| G3 | Ed25519 exact-byte verification, binding/lease/version/digest; Node34 + Python1 public vectors; Python↔Rust interop | Согласование с владельцем issuer; durable rollback floor |
+| G2 | SCM lifecycle, local pipe/DACL, настоящий token SID/session adapter, pure authorization, status-only protocol; ARM64 EXE собран | Native transport/SCM tests, adversarial identities; server authenticity до auth IPC |
+| G4 | Loopback mock OTP/enrollment/bundle/policy/revoke; 8 HTTP tests | Production HTTP adapter, durable server behaviour |
+| G5 | Official Xray/Wintun скачаны и hash-verified; Windows11 Pro ARM установлена в Fusion | Native TUN на разрешённом staging; отдельная x64 приёмка |
+| G6 | Machine DPAPI primitive с bounds/zeroizing и 3 native tests; только cross-compile/build | Service-only файловый vault/ACL, persistence, supervisor, runtime DPAPI/boot |
+| G7–G12 | Подробно спланированы | Интеграция сервера, сеть, GUI/MSI, release/pilot |
 
-## VERIFIED local checks
+## VERIFIED local
 
-Платформа: macOS arm64. Rust1.99.1 установлен изолированно в `.tools`, shell profile не изменён. Node24.11.0, Python3.9.6. Git initialized locally; результаты сохраняются локальными commits, remote не создан и публикации нет.
+macOS arm64, Rust1.99.1 изолированно в .tools; Node24.11.0, Python3.9.6. Shell profile не менялся. Локальные commits, без публикации.
 
-- `python3 tools/dev.py test` — PASS: rustfmt, clippy -D warnings, 20 Rust tests, 34 signed vectors, 8 mock HTTP tests, 4 Python supply-chain tests, offline lab verification, explicit service capabilities.
-- `python3 tools/dev.py check-windows` — PASS **cargo check** для x86_64-pc-windows-msvc с macOS; это не линковка EXE, не Windows CI и не E2E.
-- `cargo check --workspace --locked --target aarch64-pc-windows-msvc` — PASS cross-check для дополнительного Fusion target. Дополнительно `cargo clippy --all-targets --target <x64/ARM64> -- -D warnings` прошёл для обеих Windows архитектур; evidence windows-checks.txt.
-- `python3 tools/dev.py licenses` — PASS inventory 70 packages; actual license files найдены, unknown license metadata нет. THIRD_PARTY_NOTICES.txt и development CycloneDX SBOM созданы. Полный legal/vulnerability/release audit ещё не завершён.
-- `python3 tools/dev.py fetch-runtime` — PASS после retry обрыва сети: official Xray v26.11.9 и Wintun0.14.1 archive SHA256 совпали; EXE/DLL извлечены в `.cache/runtime/windows-x64`, не исполнялись. Download manifest содержит hashes actual files.
+- `python3 tools/dev.py test`: PASS — fmt/clippy, **29 Rust tests +8 Node HTTP +4 Python tools =41**. Node34 public vectors проверяются отдельно; Rust дополнительно принимает Python fixture, отвергает его повторную сериализацию без новой подписи.
+- Optional PyCA50.0.2 reference проверил **35 public vectors**. Private test keys существуют только в памяти генераторов, в fixtures только public material. Четыре Mac wheels сверены с official PyPI hashes; это local dev tool, не production issuer.
+- Windows x64/ARM64 MSVC cargo check/clippy PASS. Это cross-check, не MSVC EXE linking и не Windows CI.
+- ARM64 native EXE и adapter-test EXE успешно собраны на Mac через Rust gnullvm + pinned/hash-verified Zig0.15.2. Payload `artifacts/windows-lab`, read-only ISO `artifacts/ScrumeVPN-Lab-ARM64.iso`. Signing: UNSIGNED_LAB_ONLY; runtime: BUILT_NOT_EXECUTED.
+- Cargo inventory:70 dependencies, actual license files; development SBOM/NOTICE. Не заменяет final release audit.
 
-Evidence: docs/evidence/local-checks.txt, dependencies.json, sbom.cdx.json, upstreams.json, runtime-download.json; source tests и fixtures. В docs/ACCEPTANCE_REPORT.json только A17/A18 PASS в unit scope; 58 полных сценариев пока NOT_RUN. Ни одного Windows E2E PASS не заявлено.
+Evidence: docs/evidence/g2-*.txt, g3-python-*.txt, python-signing-deps.json, dependencies.json, sbom.cdx.json и public fixtures. A16/A17/A18 PASS только в указанном unit scope; остальные57 acceptance scenarios NOT_RUN. Windows E2E PASS пока нет.
 
 ## VMware Fusion
 
-Fusion запущен; изначально VM library пуста. Через Get Windows from Microsoft выбрана Windows11 Pro ARM en-us. Последний наблюдаемый UI: загрузка99.8%, Continue disabled; в журнале download timeouts. Штатная vmw_esd2iso использована для получения official Microsoft image URL/hash. Её HTTP URL не был использован для ручной дозагрузки: попытки HTTPS на Microsoft delivery hosts остановлены из-за hostname mismatch сертификата. TLS verification не отключалась. Windows guest не создана и тесты в ней не выполнялись. Fusion оставлен на своём экране загрузки; partial images в его temp directory и локальной .cache не считаются валидными установочными образами. Альтернатива — получить ISO с [официальной страницы Microsoft](https://www.microsoft.com/en-us/software-download/windows11arm64) через исправное HTTPS-соединение и сверить published SHA256, затем создать VM. Не считать Windows установленной по progress bar.
+Создана **ScrumeVPN Lab**: Windows11 Pro ARM64, UEFI Secure Boot/vTPM,4 CPU,6144MB RAM,128GB sparse disk,NAT. Новые passwords вводил пользователь; агент их не сохранял/не извлекал. Windows install/OOBE завершены, рабочий стол наблюдался. Пользователь установил Tools и перезагрузил Windows; Fusion теперь показывает **Reinstall VMware Tools**, что подтверждает установленный Tools. После перезагрузки Windows применяет обновления (наблюдалось30%, затем Restarting); не прерывать питание.
 
-Mac Apple Silicon/Fusion ARM guest не закрывает x64 driver/platform acceptance. Windows x64 E2E остаётся отдельной внешней зависимостью.
+Синтетический ввод в гостевую систему ещё не подтверждён. Прежние coordinate calls возвращали noWindowsAvailable; native Fusion AX menu работает. Read-only test ISO подключён через Fusion CD/DVD settings (название ISO и Connect=1 подтверждены); `run-native-tests.cmd` запускает3 DPAPI tests и1 console IPC test и сохраняет guest TEMP log. Console IPC test пропускается в обычном CI: требует active console и отсутствия работающей product service. После подключения ISO CUA стал возвращать timeoutReached даже при чтении окна; reset сеанса не помог. Пользователю передан запуск launcher после Windows Update; результат ожидается. Native тесты ещё **не исполнены**. Следом — protected-directory temporary SYSTEM service install/status/stop smoke, затем clean snapshot/evidence и сетевой POC.
 
-## Ближайшие работы
+Encrypted vmrun guest operations требуют VM password; агент не читает Keychain и не передаёт credentials через чат. Нет host home sharing или нового remote access. ARM64 guest не закрывает Windows x64 driver/platform acceptance.
 
-1. Завершить официальный Windows image/guest setup; EULA и новые credentials — пользовательский handoff при необходимости.
-2. Реализовать secure named pipe + реальную Windows identity, service vault/ACL/DPAPI и SCM runtime tests.
-3. Выполнить G5 native Xray TUN на разрешённом staging до production UI/MSI. Нужны сам staging и исходник issuer для дальнейшего adapter; секреты в чат/репозиторий не передавать.
+## Следующий этап
 
-Production issuer/Xray/employees не изменялись; сеть host Mac не перенастраивалась. Основной остаточный риск — реальные Windows network lifecycle и server revoke semantics, которые unit tests не доказывают.
+1. Дождаться Windows Update, проверить guest input, подключить test ISO, выполнить native adapter tests и SCM smoke. Исправить ошибки по результатам; собрать build hashes/evidence.
+2. Реализовать protected filesystem vault и durable rollback state после проверки native security boundary; проверить ACL/second user/reboot.
+3. G5 настоящий Xray TUN с baseline/recovery на approved staging, до GUI/MSI. Staging и существующий issuer source пока не предоставлены. Не использовать production сведения из исходного SPEC как разрешение на подключение.
+
+Production issuer/Xray/employees и сеть хостового Mac не изменялись. Главный остаточный риск — native Windows network lifecycle и server revoke semantics.

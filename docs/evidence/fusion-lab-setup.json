@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-13",
+  "scope": "Observed Fusion UI only, not Windows test execution",
+  "vm": "ScrumeVPN Lab",
+  "windows_desktop_observed": true,
+  "tools_menu_observed": "Reinstall VMware Tools",
+  "windows_update_observed": [
+    "30%",
+    "Restarting"
+  ],
+  "cd_image": "ScrumeVPN-Lab-ARM64.iso",
+  "cd_connected": true,
+  "iso_sha256": "535c4ab42244a8d5dfa7d78f3f2cddfa08ec27fb1ea9ae6d465bfcd95edef719",
+  "native_tests_status": "NOT_RUN",
+  "automation_blocker": "CUA timeoutReached on close settings and subsequent getApp, including after REPL reset",
+  "credentials": "User entered credentials; none obtained or stored by agent"
+}

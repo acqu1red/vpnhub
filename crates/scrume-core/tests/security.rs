@@ -83,6 +83,39 @@ fn independent_signed_vectors() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[test]
+fn python_signed_bytes_are_accepted_without_reserialization()
+-> Result<(), Box<dyn std::error::Error>> {
+    let f: Fixture = serde_json::from_str(include_str!(
+        "../../../tests/fixtures/signing-python-v1.json"
+    ))?;
+    let keys = keys(&f)?;
+    let bundle = verify(&good(&f)?, &context(&f, &keys))?;
+    assert_eq!(bundle.bundle().version, 7);
+    assert_eq!(bundle.bundle().key_id, "python-reference-only-1");
+    Ok(())
+}
+
+#[test]
+fn semantically_equal_reencoded_json_does_not_keep_signature()
+-> Result<(), Box<dyn std::error::Error>> {
+    let f: Fixture = serde_json::from_str(include_str!(
+        "../../../tests/fixtures/signing-python-v1.json"
+    ))?;
+    let keys = keys(&f)?;
+    let mut envelope: Value = serde_json::from_slice(&good(&f)?)?;
+    let raw = URL_SAFE_NO_PAD.decode(envelope["payload"].as_str().ok_or("payload")?)?;
+    let parsed: Value = serde_json::from_slice(&raw)?;
+    let reencoded = serde_json::to_vec(&parsed)?;
+    assert_ne!(raw, reencoded);
+    envelope["payload"] = json!(URL_SAFE_NO_PAD.encode(reencoded));
+    assert_eq!(
+        verify(&serde_json::to_vec(&envelope)?, &context(&f, &keys)).err(),
+        Some(VerifyError::Signature)
+    );
+    Ok(())
+}
+
+#[test]
 fn same_version_requires_same_payload() -> Result<(), Box<dyn std::error::Error>> {
     let f = fixture()?;
     let keys = keys(&f)?;

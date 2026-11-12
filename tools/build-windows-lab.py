@@ -73,12 +73,18 @@ os.execv(str(r / '.tools/zig-aarch64-macos-0.15.2/zig'), ['zig', 'cc', '-target'
     shutil.copy2(ROOT / 'target' / TARGET / 'release/ScrumeVPNSvc.exe', out / 'ScrumeVPNSvc.exe')
     shutil.copy2(tests[0], out / 'windows-adapter-tests.exe')
     shutil.copy2(ROOT / 'tools/windows/service-smoke.ps1', out / 'service-smoke.ps1')
+    launcher = (ROOT / 'tools/windows/run-native-tests.cmd').read_text()
+    (out / 'run-native-tests.cmd').write_bytes(launcher.replace('\n', '\r\n').encode('ascii'))
+    # Remove only the superseded launcher produced by this builder.
+    (out / 'run-dpapi-tests.cmd').unlink(missing_ok=True)
     shutil.copy2(ROOT / 'THIRD_PARTY_NOTICES.txt', out / 'THIRD_PARTY_NOTICES.txt')
     for source, name in [('LICENSE', 'ZIG-LICENSE.txt'), ('lib/libc/mingw/COPYING', 'MINGW-COPYING.txt'), ('lib/libunwind/LICENSE.TXT', 'LLVM-UNWIND-LICENSE.txt')]:
         shutil.copy2(tool / source, out / name)
     (out / 'READ-ME.txt').write_text('''UNSIGNED ARM64 LAB BUILD - NOT A VPN RELEASE
 Target: aarch64-pc-windows-gnullvm (UCRT). Does not contain Xray or Wintun.
-First run ScrumeVPNSvc.exe --capabilities, then windows-adapter-tests.exe.
+First run run-native-tests.cmd as the active Windows console user, without admin.
+It runs 3 DPAPI tests and 1 console-only IPC test, and saves a log in guest TEMP.
+The service must not be running during the console IPC test.
 For the SCM/status smoke test, use elevated PowerShell in the disposable VM:
 powershell -NoProfile -File .\\service-smoke.ps1 -Binary .\\ScrumeVPNSvc.exe -DisposableLab
 Do not lower ExecutionPolicy; review or sign the local script if your policy requires it.

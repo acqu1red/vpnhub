@@ -15,7 +15,7 @@
 | OPEN-09 | Multi-user PC | OPEN | PROPOSAL single owner; local privileged network глобальна |
 | OPEN-10 | Signing certificate/process | OPEN | Unsigned QA only до сертификата/approval |
 | OPEN-11 | Windows10 edition/patch/ESU | OPEN | Windows10 остаётся исходным target, поддержка требует конкретизации |
-| OPEN-12 | Windows и staging | PARTIAL | SOURCE использовать Fusion; VERIFIED пока нет установленной guest, ARM image downloading; staging не предоставлен |
+| OPEN-12 | Windows и staging | PARTIAL | SOURCE использовать Fusion; VERIFIED Windows11 Pro ARM установлена, Tools установлены, runtime tests pending; x64 acceptance и staging не предоставлены |
 | OPEN-13 | Enrollment/import link | DEFERRED | Нет произвольного импорта в GUI; отдельное будущее требование |
 | OPEN-14 | SLO 20 users / revoke | OPEN | Измерить active connections, egress, CPU/RAM; threshold подтвердить |
 | OPEN-15 | App-key для VPN | OPEN | PROPOSAL install token directly; legacy as session не используется без контракта |

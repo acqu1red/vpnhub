@@ -1,0 +1,7 @@
+    Checking scrume-windows v0.1.0 (/Users/headliner/Documents/vpn/ScrumeVPN/crates/scrume-windows)
+    Checking scrume-core v0.1.0 (/Users/headliner/Documents/vpn/ScrumeVPN/crates/scrume-core)
+    Checking scrume-service v0.1.0 (/Users/headliner/Documents/vpn/ScrumeVPN/apps/service)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.66s
+    Checking scrume-windows v0.1.0 (/Users/headliner/Documents/vpn/ScrumeVPN/crates/scrume-windows)
+    Checking scrume-service v0.1.0 (/Users/headliner/Documents/vpn/ScrumeVPN/apps/service)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.12s

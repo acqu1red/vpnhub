@@ -11,8 +11,8 @@ use std::{
 };
 use windows_sys::Win32::{
     Foundation::{
-        CloseHandle, ERROR_BROKEN_PIPE, ERROR_NO_DATA, ERROR_PIPE_CONNECTED, ERROR_PIPE_LISTENING,
-        GetLastError, HANDLE, INVALID_HANDLE_VALUE, LocalFree,
+        CloseHandle, ERROR_BROKEN_PIPE, ERROR_NO_DATA, ERROR_PIPE_BUSY, ERROR_PIPE_CONNECTED,
+        ERROR_PIPE_LISTENING, GetLastError, HANDLE, INVALID_HANDLE_VALUE, LocalFree,
     },
     Security::{
         Authorization::{
@@ -121,8 +121,8 @@ impl Server {
                     | PIPE_NOWAIT
                     | PIPE_REJECT_REMOTE_CLIENTS,
                 1,
-                8192,
-                8192,
+                4096,
+                (MAX_FRAME + 1) as u32,
                 1000,
                 &attributes,
             )
@@ -342,29 +342,39 @@ impl Server {
 /// Development status client, not enrollment or secret transfer. Identity-level
 /// QOS prevents a spoof server from impersonating the user for privileged actions.
 pub fn status() -> io::Result<Vec<u8>> {
+    request_status_frame(br#"{"protocol_version":1,"request_id":1,"method":"status.get"}"#)
+}
+
+fn request_status_frame(request: &[u8]) -> io::Result<Vec<u8>> {
     let name = wide(NAME);
-    // SAFETY: fixed trusted pipe name; individual rights exclude pipe creation.
-    let raw = unsafe {
-        CreateFileW(
-            name.as_ptr(),
-            FILE_GENERIC_READ | FILE_WRITE_DATA | FILE_WRITE_ATTRIBUTES,
-            0,
-            null(),
-            OPEN_EXISTING,
-            SECURITY_SQOS_PRESENT | SECURITY_IDENTIFICATION,
-            null_mut(),
-        )
+    let deadline = Instant::now() + DEADLINE;
+    let handle = loop {
+        // SAFETY: fixed trusted pipe name; individual rights exclude pipe creation.
+        let raw = unsafe {
+            CreateFileW(
+                name.as_ptr(),
+                FILE_GENERIC_READ | FILE_WRITE_DATA | FILE_WRITE_ATTRIBUTES,
+                0,
+                null(),
+                OPEN_EXISTING,
+                SECURITY_SQOS_PRESENT | SECURITY_IDENTIFICATION,
+                null_mut(),
+            )
+        };
+        if raw != INVALID_HANDLE_VALUE {
+            break Handle(raw);
+        }
+        let error = last();
+        if error.raw_os_error() != Some(ERROR_PIPE_BUSY as i32) || Instant::now() >= deadline {
+            return Err(error);
+        }
+        thread::sleep(POLL);
     };
-    if raw == INVALID_HANDLE_VALUE {
-        return Err(last());
-    }
-    let handle = Handle(raw);
     let mode = PIPE_READMODE_MESSAGE | PIPE_NOWAIT;
     // SAFETY: pipe client handle, valid mode storage. Requires write attributes.
     if unsafe { SetNamedPipeHandleState(handle.0, &mode, null(), null()) } == 0 {
         return Err(last());
     }
-    let request = br#"{"protocol_version":1,"request_id":1,"method":"status.get"}"#;
     let mut written = 0;
     // SAFETY: fixed bounded request and valid synchronous pipe handle.
     if unsafe {
@@ -381,7 +391,6 @@ pub fn status() -> io::Result<Vec<u8>> {
         return Err(last());
     }
     let mut response = vec![0u8; 4096];
-    let deadline = Instant::now() + DEADLINE;
     loop {
         let mut read = 0;
         // SAFETY: writable bounded output and valid nonblocking handle.
@@ -406,5 +415,86 @@ pub fn status() -> io::Result<Vec<u8>> {
             return Err(io::Error::new(io::ErrorKind::TimedOut, "IPC_TIMEOUT"));
         }
         thread::sleep(POLL);
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::sync::{
+        Arc,
+        atomic::{AtomicBool, Ordering},
+        mpsc,
+    };
+
+    // One serial native test owns the fixed product pipe. Refuses an existing
+    // service, uses no credentials, and checks real transport/OS identity rather
+    // than fabricated Peer values. Run before the separate SCM smoke test.
+    #[test]
+    #[ignore = "Requires an active console in a disposable Windows VM without the service running"]
+    fn native_pipe_identity_reconnect_oversize_and_cancel() -> io::Result<()> {
+        let stop = Arc::new(AtomicBool::new(false));
+        let worker_stop = Arc::clone(&stop);
+        let (ready_tx, ready_rx) = mpsc::channel();
+        let (peer_tx, peer_rx) = mpsc::channel();
+        let worker = thread::spawn(move || -> io::Result<()> {
+            let server = Server::create()?;
+            ready_tx
+                .send(())
+                .map_err(|_| io::Error::other("TEST_CHANNEL"))?;
+            while !worker_stop.load(Ordering::Acquire) {
+                server.poll(
+                    |peer, frame| {
+                        // Report only whether identity was consistent, never SID.
+                        let real_identity = peer.sid.starts_with("S-1-5-21-")
+                            && peer.token_session != 0
+                            && peer.token_session == peer.transport_session
+                            && peer.token_session == peer.active_console_session;
+                        let _ = peer_tx.send((real_identity, frame.len()));
+                        b"STATUS_TEST_ONLY".to_vec()
+                    },
+                    || worker_stop.load(Ordering::Acquire),
+                )?;
+                thread::sleep(POLL);
+            }
+            Ok(())
+        });
+        let outcome =
+            std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| -> io::Result<()> {
+                ready_rx
+                    .recv_timeout(Duration::from_secs(5))
+                    .map_err(|_| io::Error::other("PIPE_TEST_LISTENER_NOT_READY"))?;
+                // A second listener must never take over an occupied product name.
+                assert!(Server::create().is_err());
+                for _ in 0..2 {
+                    assert_eq!(status()?, b"STATUS_TEST_ONLY");
+                    let (identity, size) = peer_rx
+                        .recv_timeout(Duration::from_secs(2))
+                        .map_err(|_| io::Error::other("PIPE_TEST_MISSING_IDENTITY"))?;
+                    assert!(identity, "Run in the active Windows console user session");
+                    assert!(size <= MAX_FRAME);
+                }
+                assert!(request_status_frame(&vec![b'x'; MAX_FRAME + 1]).is_err());
+                // A malformed client must not destroy the retained listener.
+                assert_eq!(status()?, b"STATUS_TEST_ONLY");
+                let (_, size) = peer_rx
+                    .recv_timeout(Duration::from_secs(2))
+                    .map_err(|_| io::Error::other("PIPE_TEST_RECONNECT"))?;
+                assert!(size <= MAX_FRAME, "Oversize must not reach handler");
+                assert!(peer_rx.try_recv().is_err());
+                Ok(())
+            }));
+        // Always stop/join even when an IO check fails or an assertion panics.
+        stop.store(true, Ordering::Release);
+        let started = Instant::now();
+        let joined = worker
+            .join()
+            .map_err(|_| io::Error::other("PIPE_TEST_THREAD"))?;
+        assert!(started.elapsed() < Duration::from_secs(2));
+        joined?;
+        match outcome {
+            Ok(result) => result,
+            Err(panic) => std::panic::resume_unwind(panic),
+        }
     }
 }
