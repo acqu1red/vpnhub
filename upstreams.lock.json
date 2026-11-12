@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "checked_on": "2026-11-12",
+  "runtime": [
+    {
+      "name": "Xray-core",
+      "version": "v26.11.9",
+      "source_commit": "676eaf66f8f05d4d558ee7a74b4736623d3feeb9",
+      "license": "MPL-2.0",
+      "url": "https://github.com/XTLS/Xray-core/releases/download/v26.11.9/Xray-windows-64.zip",
+      "sha256": "1262522266337b824f07beb8e1375786b437683b3890105469088f8e17e0a69d",
+      "files": {
+        "xray.exe": "xray.exe",
+        "LICENSE": "XRAY-LICENSE.txt"
+      }
+    },
+    {
+      "name": "Wintun",
+      "version": "0.14.1",
+      "license": "LicenseRef-Wintun-Prebuilt",
+      "url": "https://www.wintun.net/builds/wintun-0.14.1.zip",
+      "sha256": "07c256185d6ee3652e09fa55c0b673e2624b565e02c4b9091c79ca7d2f24ef51",
+      "files": {
+        "wintun/bin/amd64/wintun.dll": "wintun.dll",
+        "wintun/LICENSE.txt": "WINTUN-LICENSE.txt"
+      }
+    }
+  ]
+}

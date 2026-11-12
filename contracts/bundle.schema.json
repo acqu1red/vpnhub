@@ -1,0 +1,149 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "context",
+    "key_id",
+    "enrollment_id",
+    "version",
+    "issued_at",
+    "expires_at",
+    "profile",
+    "policy"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "context": {
+      "const": "scrumevpn/bundle/v1"
+    },
+    "key_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "enrollment_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 18446744073709551615
+    },
+    "issued_at": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 18446744073709551615
+    },
+    "expires_at": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 18446744073709551615
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "server",
+        "port",
+        "uuid",
+        "sni",
+        "public_key",
+        "short_id",
+        "fingerprint",
+        "mtu",
+        "dns",
+        "exclude_cidrs",
+        "exclude_domains"
+      ],
+      "properties": {
+        "server": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 253
+        },
+        "port": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65535
+        },
+        "uuid": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "sni": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 253
+        },
+        "public_key": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{43}$"
+        },
+        "short_id": {
+          "type": "string",
+          "pattern": "^([0-9A-Fa-f]{2}){0,8}$"
+        },
+        "fingerprint": {
+          "const": "chrome"
+        },
+        "mtu": {
+          "type": "integer",
+          "minimum": 1280,
+          "maximum": 1500
+        },
+        "dns": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {
+            "type": "string"
+          }
+        },
+        "exclude_cidrs": {
+          "type": "array",
+          "maxItems": 128,
+          "items": {
+            "type": "string"
+          }
+        },
+        "exclude_domains": {
+          "type": "array",
+          "maxItems": 0,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "auto_connect",
+        "kill_switch",
+        "refresh_interval_seconds"
+      ],
+      "properties": {
+        "auto_connect": {
+          "type": "boolean"
+        },
+        "kill_switch": {
+          "const": false
+        },
+        "refresh_interval_seconds": {
+          "type": "integer",
+          "minimum": 60,
+          "maximum": 86400
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/scrumevpn/bundle/v1",
+  "title": "ScrumeVPN proposed payload v1 - development subset",
+  "$comment": "Verifier additionally checks host/IP/UUID, signature, device, lease, clock and rollback; schema is not authorization."
+}
