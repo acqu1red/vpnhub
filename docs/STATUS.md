@@ -31,13 +31,13 @@ Evidence: docs/evidence/g2-*.txt, g3-python-*.txt, python-signing-deps.json, dep
 
 Read-only test ISO подключён через Fusion CD/DVD settings; пользователь запустил `run-native-tests.cmd`. Агент увидел консоль **4 passed / 0 failed / 0 ignored / 0.15s**, пользователь подтвердил полный текст. Это3 DPAPI tests и1 console IPC test. Console test пропускается в обычном CI, требует active console и отсутствия работающей product service. Guest log сохраняется в TEMP; username редактирован в репозиторном evidence. Build hashes связаны с mounted payload manifest; отдельный hash внутри guest ещё не собран.
 
-Синтетический клик внутри guest по-прежнему возвращает noWindowsAvailable. Native Fusion AX menu и чтение окна снова работают; прежний timeoutReached больше не является текущим blocker. Создаётся snapshot перед SCM smoke. Следующий runtime шаг — temporary SYSTEM service install/status/stop/delete; затем файловый vault/ACL и сетевой POC.
+Синтетический клик внутри guest по-прежнему возвращает noWindowsAvailable. Native Fusion AX menu и чтение окна снова работают; прежний timeoutReached больше не является текущим blocker. Snapshot **Windows Tools - native adapters PASS - before SCM** сохранён; Fusion показывает1 snapshot (13.11.2026,00:53). Следующий runtime шаг — temporary SYSTEM service install/status/stop/delete; затем файловый vault/ACL и сетевой POC.
 
 Encrypted vmrun guest operations требуют VM password; агент не читает Keychain и не передаёт credentials через чат. Нет host home sharing или нового remote access. ARM64 guest не закрывает Windows x64 driver/platform acceptance.
 
 ## Следующий этап
 
-1. Завершить clean snapshot, выполнить SCM smoke и собрать guest build hashes. Исправить ошибки по результатам; собрать build hashes/evidence.
+1. Clean snapshot готов; выполнить SCM smoke и собрать guest build hashes. Исправить ошибки по результатам; собрать build hashes/evidence.
 2. Реализовать protected filesystem vault и durable rollback state после проверки native security boundary; проверить ACL/second user/reboot.
 3. G5 настоящий Xray TUN с baseline/recovery на approved staging, до GUI/MSI. Staging и существующий issuer source пока не предоставлены. Не использовать production сведения из исходного SPEC как разрешение на подключение.
 

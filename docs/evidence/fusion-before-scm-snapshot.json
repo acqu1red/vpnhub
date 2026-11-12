@@ -1,0 +1,10 @@
+{
+  "date": "2026-11-13",
+  "status": "SAVED_OBSERVED_IN_FUSION_UI",
+  "vm": "ScrumeVPN Lab",
+  "name": "Windows Tools - native adapters PASS - before SCM",
+  "snapshot_count": 1,
+  "guest_state": "Powered on",
+  "scope": "After native adapter tests, before temporary SCM service and network experiments",
+  "scm_test_status": "NOT_RUN"
+}
