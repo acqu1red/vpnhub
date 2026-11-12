@@ -74,7 +74,7 @@
 Критерий выхода: Windows x64 compile; SCM/ACL tests отдельно от compile.
 
 - [x] G2.01 — Подготовить SCM entrypoint/status/control lifecycle.
-- [ ] G2.02 — Проверить сборку x86_64-pc-windows-msvc.
+- [x] G2.02 — Проверить сборку x86_64-pc-windows-msvc (hosted Windows CI run43300548221; SCM runtime отдельно).
 - [x] G2.03 — Подготовить ARM64 variant для Fusion при наличии Windows ARM.
 - [x] G2.04 — Реализовать local-only pipe с DACL/FIRST_PIPE_INSTANCE.
 - [x] G2.05 — Извлекать SID/session из token, не JSON.

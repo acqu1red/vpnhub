@@ -116,3 +116,6 @@ docs/evidence — сохранённые результаты; artifacts — л�
 
 
 GitHub publication D014 выполнена в main. Первый CI run43299724026: Linux/macOS PASS, Windows нашёл CRLF mismatch в handoff test после успешных Rust/MSVC и Node шагов. Исправление committed-blob export +7 Python tests добавлено; следующее действие при продолжении — проверить последний GitHub Actions run и сохранить platform scope. Далее native SCM smoke остаётся незавершённой Windows runtime задачей.
+
+
+Обновление после публикации: исправление101832f проверено GitHub Actions run43300548221: **все3 jobs PASS** (Linux/macOS/Windows). Report docs/evidence/github-ci-101832f.json. Windows compile/link и headless tests теперь реально выполнены, G2.02 закрыт в этом scope. Новый SCM install/stop/delete runner по-прежнему runtime NOT_RUN; next task не заменять успешным CI. Клонировать PRIVATE acqu1red/vpnhub, сверить последний HEAD и run, продолжить по roadmap.

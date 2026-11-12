@@ -5,7 +5,7 @@ SOURCE: аудит, переработка ТЗ и реализация по э�
 | Gate | Проверенный результат | Осталось |
 |---|---|---|
 | G0 | Аудит, ТЗ v2, 5 ADR, 13 gates / 140 подзадач, upstream/license evidence | Последующие product OPEN решения |
-| G1 | Rust workspace/toolchain/lock, local CLI, CI config, license inventory | CI config; публикация в PRIVATE acqu1red/vpnhub разрешена D014, actual CI status смотреть в GitHub |
+| G1 | Rust workspace/toolchain/lock, local CLI, CI config, license inventory | PRIVATE acqu1red/vpnhub опубликован; hosted CI Linux/macOS/Windows PASS для101832f; актуальный HEAD/run — в GitHub |
 | G3 | Ed25519 exact-byte verification, binding/lease/version/digest; Node34 + Python1 public vectors; Python↔Rust interop | Согласование с владельцем issuer; durable rollback floor |
 | G2 | SCM lifecycle, local pipe/DACL, настоящий token SID/session adapter, pure authorization, status-only protocol; ARM64 console transport test PASS | SCM tests, adversarial identities; server authenticity до auth IPC |
 | G4 | Loopback mock OTP/enrollment/bundle/policy/revoke; 8 HTTP tests | Production HTTP adapter, durable server behaviour |
@@ -57,3 +57,6 @@ SOURCE13.11.2026: весь код, документация и контекст 
 
 
 Первый GitHub push:3e5d17e, main, workflow run43299724026. Linux/macOS PASS; Windows MSVC compile/Rust/Node прошли, но Python restore test выявил CRLF/LF mismatch. Исправление: exporter читает committed Git blobs; fixture newline policy сделана независимой от host; добавлен CRLF regression test. Полный local suite теперь44 tests. Новый CI run должен подтвердить Windows; actual status: https://github.com/acqu1red/vpnhub/actions . Настоящий SCM/TUN runtime этим workflow не проверяется.
+
+
+VERIFIED GitHub CI для101832f: **Linux/macOS/Windows — PASS**, run43300548221 (https://github.com/acqu1red/vpnhub/actions/runs/43300548221). Evidence: docs/evidence/github-ci-101832f.json. Windows job выполнил MSVC compile/link, core tests, native DPAPI tests, Node mock/signature checks, Python handoff tests и license inventory. Console-only pipe test остаётся ignored на hosted runner. SCM install/TUN/MSI E2E NOT_RUN. После этого сохранён отдельный documentation commit; его actual workflow status также смотреть в GitHub.

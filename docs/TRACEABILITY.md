@@ -4,7 +4,7 @@ SOURCE — SPEC_ORIGINAL.md или прямые D002–D005. PROPOSAL — инж
 
 | Требование | Источник | Реализация / план | Приёмка / evidence | Состояние |
 |---|---|---|---|---|
-| R01 privilege split | SPEC§3 | apps/service SCM scaffold; Tauri позже | A03/A25; Windows cross-check | Compile-only; SYSTEM runtime NOT_RUN |
+| R01 privilege split | SPEC§3 | apps/service SCM scaffold; Tauri позже | A03/A25; Windows cross-check | Hosted Windows compile/link+unit PASS; SYSTEM service runtime NOT_RUN |
 | R02 one button/tray/brand | SPEC§1/6 | G10 desktop | A05/A06 | NOT_IMPLEMENTED |
 | R03 no settings/import | SPEC§5 | IPC allowlist; G10 capabilities | A60 | Core parser verified, GUI pending |
 | R04 enrollment per device | SPEC§4 | tools/mock-issuer.mjs; real adapter G7 | A08–15; tests/mock-issuer.test.mjs | VERIFIED mock only |
@@ -24,7 +24,7 @@ SOURCE — SPEC_ORIGINAL.md или прямые D002–D005. PROPOSAL — инж
 | R18 MSI lifecycle | SPEC§6/8 | G10 WiX | A01/02/04/48–52 | NOT_IMPLEMENTED |
 | R19 supply chain/handover | SPEC§2/7 | Cargo.lock/upstreams.lock/dev tools/workflow | dependency inventory/notices/SBOM; A55/57 | Local verified; Windows CI/release audit pending |
 | R20 15–20 users | Context (unverified prior discussion) | G7/G12 load plan | A15/53/54 | NOT_RUN; thresholds OPEN |
-| R21 Win10/11 x64 | SPEC header | cross target + G5/G11 | A58 | x64 cargo check verified; real OS compatibility NOT_RUN |
+| R21 Win10/11 x64 | SPEC header | cross target + G5/G11 | A58 | Hosted Windows x64 compile/link+unit PASS; Win10/11 desktop/platform acceptance NOT_RUN |
 | R22 safe errors/logs | PROPOSAL | codes only; VerifiedBundle redacted Debug | redacted_debug test; A47 | Partial; service logger/rotation pending |
 | R23 multi-user ownership | PROPOSAL/OPEN-09 | owner SID design G2/G6 | A22/23 + account switch | DESIGN_ONLY |
 | R24 evidence/status honesty | AGENTS + current request | STATUS/ACCEPTANCE_REPORT/evidence | distinct scopes/results | Current local report supplied |

@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-13",
+  "status": "PASS",
+  "head_sha": "101832f52d469f3129ae5441f6cbfce8a8dba5c6",
+  "run_url": "https://github.com/acqu1red/vpnhub/actions/runs/43300548221",
+  "jobs": [
+    {
+      "name": "checks (windows-2025)",
+      "status": "success",
+      "url": "https://github.com/acqu1red/vpnhub/actions/runs/43300548221/job/131470242014"
+    },
+    {
+      "name": "checks (ubuntu-24.04)",
+      "status": "success",
+      "url": "https://github.com/acqu1red/vpnhub/actions/runs/43300548221/job/131470242403"
+    },
+    {
+      "name": "checks (macos-15)",
+      "status": "success",
+      "url": "https://github.com/acqu1red/vpnhub/actions/runs/43300548221/job/131470242456"
+    }
+  ],
+  "scope": "Hosted Linux/macOS/Windows compile, unit/mock/tools tests and license inventory; no SCM/TUN/MSI E2E",
+  "notes": "Windows CRLF export issue fixed before this run; active-console pipe test remains intentionally ignored on hosted CI."
+}
